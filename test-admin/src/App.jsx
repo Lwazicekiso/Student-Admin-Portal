@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import {
+  Admin,
+  Resource,
+  ListGuesser,
+  EditGuesser,
+  ShowGuesser,
+
+} from "react-admin";
+
+import { ModuleList } from './ModuleList';
+import {StudentList} from './StudentsList';
+import PocketBase from 'pocketbase';  
+// Initialize PocketBase API
+const pb = new PocketBase('https://zany-cod-9pwwrw97w7vh769-8090.app.github.dev/');
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    // Data provider for React Admin
+    const dataProvider = {
+        getList: async (resource, params) => {
+            // Debugging logs to see what parameters are passed
+            console.log('Fetching list for resource:', resource);
+            console.log('Params received by dataProvider:', params);
+
+            try {
+                const response = await pb.collection(resource).getList(
+                    params.pagination.page, // Extract the page number
+                    params.pagination.perPage, // Extract the number of records per page
+                    {
+                        sort: params.sort ? `${params.sort.order === 'DESC' ? '-' : '+'}${params.sort.field}` : '-created', // Sorting logic
+                    }
+                );
+                
+                console.log('Data fetched by dataProvider:', response);
+                
+                return {
+                    data: response.items.map(item => ({ ...item, id: item.id })), // Map items and include `id` for React Admin
+                    total: response.totalItems,
+                };
+            } catch (error) {
+                console.error('Error in dataProvider getList:', error);
+                throw error;
+            }
+        },
+    };
+
+    return (
+        <Admin
+          dataProvider={dataProvider}
+        >
+
+          <Resource
+            name="Students"
+            list={StudentList}
+            edit={EditGuesser}
+            show={ShowGuesser}
+          />
+          <Resource
+            name="Module"
+            list={ModuleList}
+            edit={EditGuesser}
+            show={ShowGuesser}
+          />
+        </Admin>
+    );
 }
 
-export default App
+export default App;
