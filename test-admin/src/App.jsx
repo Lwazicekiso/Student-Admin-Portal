@@ -9,18 +9,18 @@ import {
 
 } from "react-admin";
 
-import { ModuleList } from './ModuleList';
-import {StudentList} from './StudentsList';
-import {ApplicantList} from './ApplicantList';
-import {CourseList} from "./CourseList";
-import { LecturerList } from './Lecturer';
-import { RoleList } from './Role';
+import { ModuleList,ModuleEdit,ModuleCreate,ModuleShow } from './ModuleList';
+import {StudentList, StudentEdit , StudentCreate, StudentShow} from './StudentsList';
+import {ApplicantList,ApplicantEdit,ApplicantCreate,ApplicantShow} from './ApplicantList';
+import {CourseList,CourseEdit,CourseCreate, CourseShow} from "./CourseList";
+import { LecturerList, LecturerEdit, LecturerCreate, LecturerShow } from './Lecturer'; // Import the components
+import { RoleList,RoleEdit,RoleCreate,RoleShow } from './Role';
 import PocketBase from 'pocketbase';  
 
 
 
 // Initialize PocketBase API
-const pb = new PocketBase('https://psychic-palm-tree-r4g66qpgq4gxcp55p-8090.app.github.dev');
+const pb = new PocketBase('https://zany-cod-9pwwrw97w7vh769-8090.app.github.dev');
 
 function App() {
 
@@ -61,42 +61,53 @@ function App() {
           <Resource
             name="Students"
             list={StudentList}
-            edit={EditGuesser}
-            show={ShowGuesser}
+            edit={StudentEdit}
+            show={StudentShow}
+            create={StudentCreate}
           />
           
           <Resource
             name="Course"
             list={CourseList}
-            edit={EditGuesser}
-            show={ShowGuesser}
+            edit={CourseEdit}
+            show={CourseShow}
+            create={CourseCreate}
+
+
           />
           
           <Resource
             name="Applicant"
             list={ApplicantList}
-            edit={EditGuesser}
-            show={ShowGuesser}
+            edit={ApplicantEdit}
+            show={ApplicantShow}
+            create={ApplicantCreate}
+
           />
           <Resource
             name="Module"
             list={ModuleList}
-            edit={EditGuesser}
-            show={ShowGuesser}
+            edit={ModuleEdit}
+            show={ModuleShow}
+            create={ModuleCreate}
+
           />
 
-          <Resource
-            name="Lecturer"
-            list={LecturerList}
-            edit={EditGuesser}
-            show={ShowGuesser}
-          />
+<Resource
+    name="Lecturer"
+    list={LecturerList}
+    edit={LecturerEdit}
+    create={LecturerCreate}
+    show={LecturerShow}
+/>
 
           <Resource
             name="Role"
             list={RoleList}
-            edit={EditGuesser}
-            show={ShowGuesser}
+            edit={RoleEdit}
+            show={RoleShow}
+            create={RoleCreate}
+
           />
 
           
