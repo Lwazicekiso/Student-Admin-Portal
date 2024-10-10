@@ -5,6 +5,7 @@ import {
   ListGuesser,
   EditGuesser,
   ShowGuesser,
+  ListActions,
 
 } from "react-admin";
 
@@ -12,7 +13,12 @@ import { ModuleList } from './ModuleList';
 import {StudentList} from './StudentsList';
 import {ApplicantList} from './ApplicantList';
 import {CourseList} from "./CourseList";
+import { LecturerList } from './Lecturer';
+import { RoleList } from './Role';
 import PocketBase from 'pocketbase';  
+
+
+
 // Initialize PocketBase API
 const pb = new PocketBase('https://psychic-palm-tree-r4g66qpgq4gxcp55p-8090.app.github.dev');
 
@@ -78,6 +84,22 @@ function App() {
             edit={EditGuesser}
             show={ShowGuesser}
           />
+
+          <Resource
+            name="Lecturer"
+            list={LecturerList}
+            edit={EditGuesser}
+            show={ShowGuesser}
+          />
+
+          <Resource
+            name="Role"
+            list={RoleList}
+            edit={EditGuesser}
+            show={ShowGuesser}
+          />
+
+          
         </Admin>
     );
 }
