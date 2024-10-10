@@ -10,9 +10,11 @@ import {
 
 import { ModuleList } from './ModuleList';
 import {StudentList} from './StudentsList';
+import {ApplicantList} from './ApplicantList';
+import {CourseList} from "./CourseList";
 import PocketBase from 'pocketbase';  
 // Initialize PocketBase API
-const pb = new PocketBase('https://zany-cod-9pwwrw97w7vh769-8090.app.github.dev/');
+const pb = new PocketBase('https://psychic-palm-tree-r4g66qpgq4gxcp55p-8090.app.github.dev');
 
 function App() {
 
@@ -53,6 +55,20 @@ function App() {
           <Resource
             name="Students"
             list={StudentList}
+            edit={EditGuesser}
+            show={ShowGuesser}
+          />
+          
+          <Resource
+            name="Course"
+            list={CourseList}
+            edit={EditGuesser}
+            show={ShowGuesser}
+          />
+          
+          <Resource
+            name="Applicant"
+            list={ApplicantList}
             edit={EditGuesser}
             show={ShowGuesser}
           />
