@@ -1,15 +1,8 @@
-import { StudentList, StudentEdit, StudentCreate, StudentShow } from '../StudentsList';
-import { ApplicantList, ApplicantEdit, ApplicantShow } from '../ApplicantList';
-import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from '../AssessmentList';
+import { StudentList, StudentEdit, StudentCreate, StudentShow } from '../Lists/StudentsList';
+import { ApplicantList, ApplicantEdit, ApplicantShow } from '../Lists/ApplicantList';
+import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from '../Lists/AssessmentList';
 
-import {
-    Admin,
-    Resource,
-    ListGuesser,
-    EditGuesser,
-    ShowGuesser,
-    ListActions,
-} from "react-admin";
+import { Admin,Resource} from "react-admin";
 import { dataProvider } from "../App";
 
 // Correctly define and export the admin component

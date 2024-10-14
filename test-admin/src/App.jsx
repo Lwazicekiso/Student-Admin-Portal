@@ -9,16 +9,17 @@ import {
 
 } from "react-admin";
 
+// The admin screen component MyAdmin will be rendered later
 import MyAdmin from './Admin/MyAdmin';
 
-import { ModuleList,ModuleEdit,ModuleCreate,ModuleShow } from './ModuleList';
-import {StudentList, StudentEdit , StudentCreate, StudentShow} from './StudentsList';
-import {ApplicantList,ApplicantEdit,ApplicantCreate,ApplicantShow} from './ApplicantList';
-import {CourseList,CourseEdit,CourseCreate, CourseShow} from "./CourseList";
-import { LecturerList, LecturerEdit, LecturerCreate, LecturerShow } from './Lecturer'; // Import the components
-import { RoleList,RoleEdit,RoleCreate,RoleShow } from './Role';
+import { ModuleList,ModuleEdit,ModuleCreate,ModuleShow } from './Lists/ModuleList';
+import {StudentList, StudentEdit , StudentCreate, StudentShow} from './Lists/StudentsList';
+import {ApplicantList,ApplicantEdit,ApplicantCreate,ApplicantShow} from './Lists/ApplicantList';
+import {CourseList,CourseEdit,CourseCreate, CourseShow} from "./Lists/CourseList";
+import { LecturerList, LecturerEdit, LecturerCreate, LecturerShow } from './Lists/Lecturer'; // Import the components
+import { RoleList,RoleEdit,RoleCreate,RoleShow } from './Lists/Role';
 import PocketBase from 'pocketbase';  
-import { AssessmentList, AssessmentCreate,AssessmentShow, AssessmentEdit} from './AssessmentList';
+import { AssessmentList, AssessmentCreate,AssessmentShow, AssessmentEdit} from './Lists/AssessmentList';
 
 
 
