@@ -1,4 +1,4 @@
-import { Datagrid, NumberField,Edit, Create, SimpleForm,DateField, List, Show, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
+import { Datagrid, NumberField,Edit, Create, SimpleForm,DateField, NumberInput,  List, Show, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
 
 export const AssessmentList = () => (
     <List>
@@ -42,9 +42,9 @@ export const AssessmentEdit = () => (
 export const AssessmentCreate = () => (
     <Create>
         <SimpleForm>
-            <NumberField source="Mark" />
-            <TextField source="Module_Name" />
-            <TextField source="StudentID" />
+            <NumberInput source="Mark" />
+            <TextInput source="Module_Name" />
+            <TextInput source="StudentID" />
         </SimpleForm>
     </Create>
 );

@@ -57,7 +57,7 @@ function App() {
 
     // Data provider for React Admin
    
-/*
+
     return (
         <Admin
           dataProvider={dataProvider}
@@ -124,13 +124,9 @@ function App() {
 
           
         </Admin>
-    );*/
+    );
 
-    return (
-      <>
-      <MyAdmin/>
-      </>
-    )
+    
 }
 
 export default App;
