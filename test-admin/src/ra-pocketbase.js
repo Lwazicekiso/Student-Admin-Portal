@@ -42,26 +42,45 @@ export var PocketBaseProvider = function (apiUrl) {
         pb: pb,
         dataProvider: {
             // Does not currently apply any filters to data returned.
-            getList: function (resource, params) { return __awaiter(void 0, void 0, void 0, function () {
-                var _a, page, perPage, _b, field, order, pb_sort, resultList;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            _a = params.pagination, page = _a.page, perPage = _a.perPage;
-                            _b = params.sort, field = _b.field, order = _b.order;
-                            pb_sort = "".concat(order === 'DESC' ? '-' : '+').concat(field);
-                            return [4 /*yield*/, pb.collection(resource).getList(page, perPage, {
+            getList: function (resource, params) {
+                return __awaiter(void 0, void 0, void 0, function () {
+                    var _a, page, perPage, _b, field, order, pb_sort, filterQuery, resultList;
+                    return __generator(this, function (_c) {
+                        switch (_c.label) {
+                            case 0:
+                                _a = params.pagination, page = _a.page, perPage = _a.perPage;
+                                _b = params.sort, field = _b.field, order = _b.order;
+                                pb_sort = "".concat(order === 'DESC' ? '-' : '+').concat(field);
+            
+                                // Initialize filterQuery as an empty string
+                                filterQuery = '';
+            
+                                // Build the filter query based on the filter params
+                                if (params.filter) {
+                                    var filterParts = [];
+                                    if (params.filter.name) {
+                                        filterParts.push("name~'".concat(params.filter.name, "'"));  // Adjust based on your collection field names
+                                    }
+                                    if (params.filter.StudentID) {
+                                        filterParts.push("StudentID~'".concat(params.filter.StudentID, "'"));  // Same here
+                                    }
+                                    filterQuery = filterParts.join(' && ');  // Join filters with AND
+                                }
+            
+                                return [4 /*yield*/, pb.collection(resource).getList(page, perPage, {
                                     sort: pb_sort,
+                                    filter: filterQuery,  // Add filter query here
                                 })];
-                        case 1:
-                            resultList = _c.sent();
-                            return [2 /*return*/, {
+                            case 1:
+                                resultList = _c.sent();
+                                return [2 /*return*/, {
                                     data: resultList.items,
                                     total: resultList.totalItems,
                                 }];
-                    }
+                        }
+                    });
                 });
-            }); },
+            },
             getOne: function (resource, params) { return __awaiter(void 0, void 0, void 0, function () {
                 var record;
                 return __generator(this, function (_a) {
