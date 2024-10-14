@@ -1,7 +1,16 @@
 import { Datagrid, Edit, Create, SimpleForm,DateField, List, Show, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
+import { SearchInput, Filter } from 'react-admin';
 
+
+
+const StudentFilter = (props) => (
+    <Filter {...props}>
+        <TextInput label="Search by Name" source="name" alwaysOn />
+        <TextInput label="Search by Student ID" source="StudentID" />
+    </Filter>
+);
 export const StudentList = () => (
-    <List>
+    <List filters={<StudentFilter />}>
         <Datagrid>
             <TextField source="id" />
             <TextField source="StudentID" />
@@ -12,6 +21,7 @@ export const StudentList = () => (
         </Datagrid>
     </List>
 );
+
 
 export const StudentEdit = () => (
     <Edit>
