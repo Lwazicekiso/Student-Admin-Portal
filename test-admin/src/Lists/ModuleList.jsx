@@ -6,14 +6,16 @@ import {
     TextField, 
     Edit, 
     Create, 
+    Filter,
     Show, 
     SimpleForm, 
     SimpleShowLayout, 
-    TextInput 
+    TextInput, 
+    NumberInput 
 } from 'react-admin';
 
 export const ModuleList = () => (
-    <List>
+    <List filters={<ModuleFilter />}>
         <Datagrid>
             <NumberField source="Credits" />
             <TextField source="Name" />
@@ -24,6 +26,15 @@ export const ModuleList = () => (
         </Datagrid>
     </List>
 );
+
+
+export const ModuleFilter= (props)=> (
+    <Filter {...props}>
+        <TextInput label="Search by module name" source="Name" alwaysOn />
+        <NumberInput label="Search by year level" source="Year_level" />
+        <NumberInput label="Search credit amount" source='Credits'/> 
+    </Filter>
+)
 
 export const ModuleEdit = () => (
     <Edit>

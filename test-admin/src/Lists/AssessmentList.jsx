@@ -1,7 +1,8 @@
-import { Datagrid, NumberField,Edit, Create, SimpleForm,DateField, NumberInput,  List, Show, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
+import { Datagrid,Filter , NumberField,Edit, Create, SimpleForm,DateField, NumberInput,  List, Show, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
+
 
 export const AssessmentList = () => (
-    <List>
+    <List filters={<AssessmentFilter />}>
         <Datagrid>
             <NumberField source="Mark" />
             <TextField source="Module_Name" />
@@ -11,6 +12,13 @@ export const AssessmentList = () => (
             <DateField source="updated" />
         </Datagrid>
     </List>
+);
+
+
+export const AssessmentFilter = (props)=>(
+    <Filter {...props}>
+        <TextInput label='Search by Module_Name' source="Module_Name" /> 
+    </Filter>
 );
 
 

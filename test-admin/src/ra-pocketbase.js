@@ -58,18 +58,45 @@ export var PocketBaseProvider = function (apiUrl) {
                                 // Build the filter query based on the filter params
                                 if (params.filter) {
                                     var filterParts = [];
-                                    if (params.filter.name) {
-                                        filterParts.push("name~'".concat(params.filter.name, "'"));  // Adjust based on your collection field names
+            
+                                    // General filters for Student resource
+                                    if (resource === "Students") {
+                                        if (params.filter.name) {
+                                            filterParts.push("name~'".concat(params.filter.name, "'"));  // Partial match for name
+                                        }
+                                        if (params.filter.StudentID) {
+                                            filterParts.push("StudentID~'".concat(params.filter.StudentID, "'"));  // Partial match for Student ID
+                                        }
                                     }
-                                    if (params.filter.StudentID) {
-                                        filterParts.push("StudentID~'".concat(params.filter.StudentID, "'"));  // Same here
+            
+                                    // Module-specific filter
+                                    if (resource === "Module" && params.filter.Name) {
+                                        filterParts.push("Name~'".concat(params.filter.Name, "'"));  // Partial match for module name
                                     }
-                                    filterQuery = filterParts.join(' && ');  // Join filters with AND
+            
+                                    // Course-specific filter
+                                    if (resource === "Course" && params.filter.Name) {
+                                        filterParts.push("Name~'".concat(params.filter.Name, "'"));  // Partial match for course name
+                                    }
+            
+                                    // Applicant-specific filter
+                                    if (resource === "Applicant" && params.filter.Name) {
+                                        filterParts.push("Name~'".concat(params.filter.Name, "'"));  // Partial match for applicant name
+                                    }
+            
+                                    // Assessment-specific filter for Module_Name
+                                    if (resource === "Assessment" && params.filter.Module_Name) {
+                                        filterParts.push("Module_Name~'".concat(params.filter.Module_Name, "'"));  // Partial match for module name in assessments
+                                    }
+            
+                                    // Combine all filter parts into one query string
+                                    filterQuery = filterParts.join(' && ');
                                 }
             
+                                // Fetch the list of items from PocketBase, applying sort and filter
                                 return [4 /*yield*/, pb.collection(resource).getList(page, perPage, {
                                     sort: pb_sort,
-                                    filter: filterQuery,  // Add filter query here
+                                    filter: filterQuery,  
                                 })];
                             case 1:
                                 resultList = _c.sent();
@@ -81,6 +108,7 @@ export var PocketBaseProvider = function (apiUrl) {
                     });
                 });
             },
+            
             getOne: function (resource, params) { return __awaiter(void 0, void 0, void 0, function () {
                 var record;
                 return __generator(this, function (_a) {

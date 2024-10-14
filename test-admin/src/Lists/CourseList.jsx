@@ -1,7 +1,15 @@
-import { Datagrid, Edit, Create, SimpleForm,DateField, List, Show, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
+import { Datagrid, Edit, Create, Filter, SimpleForm, DateField, List, Show, SimpleShowLayout, TextField, TextInput } from 'react-admin';
 
+// Define the CourseFilter component, accepting props
+export const CourseFilter = (props) => (
+    <Filter {...props}>
+        <TextInput label="Search by course name" source="Name" alwaysOn />
+    </Filter>
+);
+
+// Define the CourseList component with the filters
 export const CourseList = () => (
-    <List>
+    <List filters={<CourseFilter />}> 
         <Datagrid>
             <TextField source="id" />
             <TextField source="Name" />
@@ -11,7 +19,6 @@ export const CourseList = () => (
     </List>
 );
 
-
 export const CourseEdit = () => (
     <Edit>
         <SimpleForm>
@@ -20,7 +27,6 @@ export const CourseEdit = () => (
     </Edit>
 );
 
-
 export const CourseCreate = () => (
     <Create>
         <SimpleForm>
@@ -28,7 +34,6 @@ export const CourseCreate = () => (
         </SimpleForm>
     </Create>
 );
-
 
 export const CourseShow = () => (
     <Show>
