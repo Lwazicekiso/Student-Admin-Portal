@@ -9,7 +9,7 @@ import {
 
 } from "react-admin";
 
-// The admin screen component MyAdmin will be rendered later
+// The admin screen component MyAdmin will be rendered later along with other components 
 import MyAdmin from './Admin/MyAdmin';
 
 import { ModuleList,ModuleEdit,ModuleCreate,ModuleShow } from './Lists/ModuleList';
