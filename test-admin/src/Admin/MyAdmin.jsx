@@ -1,15 +1,15 @@
 import { StudentList, StudentEdit, StudentCreate, StudentShow } from '../Lists/StudentsList';
 import { ApplicantList, ApplicantEdit, ApplicantShow } from '../Lists/ApplicantList';
 import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from '../Lists/AssessmentList';
-
 import { Admin,Resource} from "react-admin";
 import { dataProvider } from "../App";
+import CustomLayout from "../CustomLayout";
 
 
-// Correctly define and export the admin component
 const MyAdmin = () => {
     return (
-        <Admin dataProvider={dataProvider}>
+        <Admin dataProvider={dataProvider} layout={CustomLayout}>
+            
             <Resource
                 name="Students"
                 list={StudentList}
