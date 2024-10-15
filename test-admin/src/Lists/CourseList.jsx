@@ -9,7 +9,11 @@ export const CourseFilter = (props) => (
 
 // Define the CourseList component with the filters
 export const CourseList = () => (
-    <List filters={<CourseFilter />}> 
+    <List filters={<CourseFilter />}
+    sx={{ 
+        marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+    }}
+    > 
         <Datagrid>
             <TextField source="id" />
             <TextField source="Name" />

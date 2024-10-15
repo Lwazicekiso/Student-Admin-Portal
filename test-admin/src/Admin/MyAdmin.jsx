@@ -18,6 +18,7 @@ const MyAdmin = () => {
                 edit={StudentEdit}
                 show={StudentShow}
                 create={StudentCreate}
+                
             />
             <Resource
                 name="Applicant"
