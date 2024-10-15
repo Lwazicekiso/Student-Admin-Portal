@@ -5,8 +5,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 
 const CustomSidebar = (props) => (
-    <Sidebar {...props}>
-        <MenuItemLink id = ""
+    // Custom Sidebar with menu items and iconsn
+    <Sidebar {...props} sx={{  paddingTop: '1%', color:"white",backgroundColor: '#194D6C', paddingRight:'5%' }}> {/**/}
+        <MenuItemLink sx ={{paddingLeft:'10%',paddingRight:'100%',}}
             to="/students" // lowercase URLs
             primaryText="Students"
             leftIcon={<SchoolIcon />}

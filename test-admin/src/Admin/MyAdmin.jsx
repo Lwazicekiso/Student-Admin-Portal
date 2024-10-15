@@ -4,11 +4,13 @@ import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from
 import { Admin,Resource} from "react-admin";
 import { dataProvider } from "../App";
 import CustomLayout from "../CustomLayout";
+import {authProvider} from "../App";
 
 
 const MyAdmin = () => {
     return (
-        <Admin dataProvider={dataProvider} layout={CustomLayout}>
+        <Admin dataProvider={dataProvider}
+        layout={CustomLayout}>
             
             <Resource
                 name="Students"
