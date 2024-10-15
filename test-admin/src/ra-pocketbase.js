@@ -42,26 +42,73 @@ export var PocketBaseProvider = function (apiUrl) {
         pb: pb,
         dataProvider: {
             // Does not currently apply any filters to data returned.
-            getList: function (resource, params) { return __awaiter(void 0, void 0, void 0, function () {
-                var _a, page, perPage, _b, field, order, pb_sort, resultList;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            _a = params.pagination, page = _a.page, perPage = _a.perPage;
-                            _b = params.sort, field = _b.field, order = _b.order;
-                            pb_sort = "".concat(order === 'DESC' ? '-' : '+').concat(field);
-                            return [4 /*yield*/, pb.collection(resource).getList(page, perPage, {
+            getList: function (resource, params) {
+                return __awaiter(void 0, void 0, void 0, function () {
+                    var _a, page, perPage, _b, field, order, pb_sort, filterQuery, resultList;
+                    return __generator(this, function (_c) {
+                        switch (_c.label) {
+                            case 0:
+                                _a = params.pagination, page = _a.page, perPage = _a.perPage;
+                                _b = params.sort, field = _b.field, order = _b.order;
+                                pb_sort = "".concat(order === 'DESC' ? '-' : '+').concat(field);
+            
+                                // Initialize filterQuery as an empty string
+                                filterQuery = '';
+            
+                                // Build the filter query based on the filter params
+                                if (params.filter) {
+                                    var filterParts = [];
+            
+                                    // General filters for Student resource
+                                    if (resource === "Students") {
+                                        if (params.filter.name) {
+                                            filterParts.push("name~'".concat(params.filter.name, "'"));  // Partial match for name
+                                        }
+                                        if (params.filter.StudentID) {
+                                            filterParts.push("StudentID~'".concat(params.filter.StudentID, "'"));  // Partial match for Student ID
+                                        }
+                                    }
+            
+                                    // Module-specific filter
+                                    if (resource === "Module" && params.filter.Name) {
+                                        filterParts.push("Name~'".concat(params.filter.Name, "'"));  // Partial match for module name
+                                    }
+            
+                                    // Course-specific filter
+                                    if (resource === "Course" && params.filter.Name) {
+                                        filterParts.push("Name~'".concat(params.filter.Name, "'"));  // Partial match for course name
+                                    }
+            
+                                    // Applicant-specific filter
+                                    if (resource === "Applicant" && params.filter.Name) {
+                                        filterParts.push("Name~'".concat(params.filter.Name, "'"));  // Partial match for applicant name
+                                    }
+            
+                                    // Assessment-specific filter for Module_Name
+                                    if (resource === "Assessment" && params.filter.Module_Name) {
+                                        filterParts.push("Module_Name~'".concat(params.filter.Module_Name, "'"));  // Partial match for module name in assessments
+                                    }
+            
+                                    // Combine all filter parts into one query string
+                                    filterQuery = filterParts.join(' && ');
+                                }
+            
+                                // Fetch the list of items from PocketBase, applying sort and filter
+                                return [4 /*yield*/, pb.collection(resource).getList(page, perPage, {
                                     sort: pb_sort,
+                                    filter: filterQuery,  
                                 })];
-                        case 1:
-                            resultList = _c.sent();
-                            return [2 /*return*/, {
+                            case 1:
+                                resultList = _c.sent();
+                                return [2 /*return*/, {
                                     data: resultList.items,
                                     total: resultList.totalItems,
                                 }];
-                    }
+                        }
+                    });
                 });
-            }); },
+            },
+            
             getOne: function (resource, params) { return __awaiter(void 0, void 0, void 0, function () {
                 var record;
                 return __generator(this, function (_a) {

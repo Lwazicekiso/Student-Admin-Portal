@@ -5,81 +5,31 @@ import {
   ListGuesser,
   EditGuesser,
   ShowGuesser,
+  ListActions,
 
 } from "react-admin";
 
-import { ModuleList } from './ModuleList';
-import {StudentList} from './StudentsList';
-import {ApplicantList} from './ApplicantList';
-import {CourseList} from "./CourseList";
-import PocketBase from 'pocketbase';  
-// Initialize PocketBase API
-const pb = new PocketBase('https://psychic-palm-tree-r4g66qpgq4gxcp55p-8090.app.github.dev');
+// The admin screen component MyAdmin will be rendered later along with other components 
+import MyAdmin from './Admin/MyAdmin';
 
+import {PocketBaseProvider} from './ra-pocketbase';
+//import { dataProvider } from './dataProvider';
+
+const apiUrl = 'https://zany-cod-9pwwrw97w7vh769-8090.app.github.dev'; 
+
+export const dataProvider = PocketBaseProvider(apiUrl).dataProvider;
+export const authProvider = PocketBaseProvider(apiUrl).authProvider;
 function App() {
 
     // Data provider for React Admin
-    const dataProvider = {
-        getList: async (resource, params) => {
-            // Debugging logs to see what parameters are passed
-            console.log('Fetching list for resource:', resource);
-            console.log('Params received by dataProvider:', params);
+    return(
+      <>
+          <MyAdmin /> 
+      </>
 
-            try {
-                const response = await pb.collection(resource).getList(
-                    params.pagination.page, // Extract the page number
-                    params.pagination.perPage, // Extract the number of records per page
-                    {
-                        sort: params.sort ? `${params.sort.order === 'DESC' ? '-' : '+'}${params.sort.field}` : '-created', // Sorting logic
-                    }
-                );
-                
-                console.log('Data fetched by dataProvider:', response);
-                
-                return {
-                    data: response.items.map(item => ({ ...item, id: item.id })), // Map items and include `id` for React Admin
-                    total: response.totalItems,
-                };
-            } catch (error) {
-                console.error('Error in dataProvider getList:', error);
-                throw error;
-            }
-        },
-    };
+    )
 
-    return (
-        <Admin
-          dataProvider={dataProvider}
-        >
-
-          <Resource
-            name="Students"
-            list={StudentList}
-            edit={EditGuesser}
-            show={ShowGuesser}
-          />
-          
-          <Resource
-            name="Course"
-            list={CourseList}
-            edit={EditGuesser}
-            show={ShowGuesser}
-          />
-          
-          <Resource
-            name="Applicant"
-            list={ApplicantList}
-            edit={EditGuesser}
-            show={ShowGuesser}
-          />
-          <Resource
-            name="Module"
-            list={ModuleList}
-            edit={EditGuesser}
-            show={ShowGuesser}
-          />
-        </Admin>
-    );
+    
 }
 
 export default App;
