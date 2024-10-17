@@ -4,7 +4,10 @@ import { BooleanField, Datagrid, DateField, List,  TextField ,
 } from 'react-admin';
 
 export const LecturerList = () => (
-    <List>
+    <List
+    sx={{ 
+        marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+    }}>
         <Datagrid>
             <TextField source="id" />
             <TextField source="username" /> 

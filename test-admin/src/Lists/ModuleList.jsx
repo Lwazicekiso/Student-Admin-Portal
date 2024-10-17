@@ -15,7 +15,10 @@ import {
 } from 'react-admin';
 
 export const ModuleList = () => (
-    <List filters={<ModuleFilter />}>
+    <List filters={<ModuleFilter />}
+    sx={{ 
+        marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+    }}>
         <Datagrid>
             <NumberField source="Credits" />
             <TextField source="Name" />

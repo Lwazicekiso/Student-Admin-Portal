@@ -1,44 +1,47 @@
-import { Datagrid,Filter , NumberField,Edit, Create, SimpleForm,DateField, NumberInput,  List, Show, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
+import { Datagrid, Filter, NumberField, Edit, Create, SimpleForm, DateField, NumberInput, List, Show, SimpleShowLayout, TextField, TextInput } from 'react-admin';
+import {dataGridStyle, commonStyles} from './ListStyle'
 
 
 export const AssessmentList = () => (
-    <List filters={<AssessmentFilter />}>
-        <Datagrid>
+    <List filters={<AssessmentFilter />}
+        sx={{ 
+            marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+        }}
+    >
+        <Datagrid
+        sx={dataGridStyle}
+        >
             <NumberField source="Mark" />
             <TextField source="Module_Name" />
             <TextField source="StudentID" />
-            <DateField source="created" />
             <TextField source="id" />
-            <DateField source="updated" />
         </Datagrid>
     </List>
 );
 
-
-export const AssessmentFilter = (props)=>(
+export const AssessmentFilter = (props) => (
     <Filter {...props}>
-        <TextInput label='Search by Module_Name' source="Module_Name" /> 
+        <TextInput label="Search by Module Name" source="Module_Name" /> 
     </Filter>
 );
 
-
-
 export const AssessmentShow = () => (
-    <Show>
+    <Show    sx={{ 
+        marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+    }}>
         <SimpleShowLayout>
             <NumberField source="Mark" />
             <TextField source="Module_Name" />
             <TextField source="StudentID" />
-            <DateField source="created" />
             <TextField source="id" />
-            <DateField source="updated" />
         </SimpleShowLayout>
     </Show>
 );
 
-
 export const AssessmentEdit = () => (
-    <Edit>
+    <Edit    sx={{ 
+        marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+    }}>
         <SimpleForm>
             <NumberField source="Mark" />
             <TextField source="Module_Name" />
@@ -48,7 +51,9 @@ export const AssessmentEdit = () => (
 );
 
 export const AssessmentCreate = () => (
-    <Create>
+    <Create    sx={{ 
+        marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+    }}>
         <SimpleForm>
             <NumberInput source="Mark" />
             <TextInput source="Module_Name" />

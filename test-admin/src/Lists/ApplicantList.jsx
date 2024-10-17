@@ -1,59 +1,45 @@
 import { BooleanField, Datagrid, DateField, List, TextField, 
-    Edit, SimpleForm, TextInput, BooleanInput, DateInput, Create,
+    Edit, SimpleForm, TextInput, BooleanInput, DateInput,
     Show, SimpleShowLayout
-
-
-
 } from 'react-admin';
+import {dataGridStyle, commonStyles} from './ListStyle'
+
+// Centralized common styles
+
+
 
 export const ApplicantList = () => (
-    <List>
-        <Datagrid>
-            <DateField source="Application" />
-            <TextField source="Name" />
-            <BooleanField source="Status" />
-            <TextField source="Surname" />
-            <DateField source="created" />
-            <TextField source="id" />
-            <DateField source="updated" />
+    <List
+        sx={commonStyles} // Applying centralized margin and color
+>
+        <Datagrid sx={dataGridStyle}>
+            <TextField sx={{padding:'15px'}} source="Name" label="Applicant Name" /> {/* Added label */}
+            <TextField source="Surname" label="Last Name" /> {/* Added label */}
+            <TextField source="id" label="Application ID" /> {/* Use label instead of title */}
+            <BooleanField source="Status" label="Status" />
         </Datagrid>
     </List>
 );
 
-
-import { } from 'react-admin';
-
 export const ApplicantEdit = () => (
-    <Edit>
+    <Edit sx={commonStyles}>
         <SimpleForm>
             <DateInput source="Application" label="Application Date" />
-            <TextInput source="Name" />
-            <TextInput source="Surname" />
-            <BooleanInput source="Status" />
+            <TextInput source="Name" label="First Name" />
+            <TextInput source="Surname" label="Last Name" />
+            <BooleanInput source="Status" label="Application Status" />
         </SimpleForm>
     </Edit>
 );
 
 
-export const ApplicantCreate = () => (
-    <Create>
-        <SimpleForm>
-            <DateInput source="Application" label="Application Date" />
-            <TextInput source="Name" />
-            <TextInput source="Surname" />
-            <BooleanInput source="Status" />
-        </SimpleForm>
-    </Create>
-);
-
-
 export const ApplicantShow = () => (
-    <Show>
+    <Show sx={commonStyles}>
         <SimpleShowLayout>
             <DateField source="Application" label="Application Date" />
-            <TextField source="Name" />
-            <TextField source="Surname" />
-            <BooleanField source="Status" />
+            <TextField source="Name" label="First Name" />
+            <TextField source="Surname" label="Last Name" />
+            <BooleanField source="Status" label="Application Status" />
             <DateField source="created" label="Created Date" />
             <DateField source="updated" label="Last Updated" />
         </SimpleShowLayout>

@@ -1,10 +1,16 @@
 import { Datagrid, Edit, Create, SimpleForm,DateField, List, Show, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
 import {Filter } from 'react-admin';
+import {dataGridStyle,commonStyles} from './ListStyle'
 
 
 export const StudentList = () => (
-    <List filters={<StudentFilter />}>
-        <Datagrid>
+    <List filters={<StudentFilter />}
+    sx={{commonStyles}}
+    >
+        <Datagrid
+        sx={dataGridStyle}
+        
+        >
             <TextField source="id" />
             <TextField source="StudentID" />
             <DateField source="created" />
@@ -34,7 +40,9 @@ export const StudentEdit = () => (
 );
 
 export const StudentCreate = () => (
-    <Create>
+    <Create    sx={{ 
+        marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+    }}>
         <SimpleForm>
             <TextInput source="StudentID" />
             <TextInput source="name" />
