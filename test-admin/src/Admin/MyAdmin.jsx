@@ -2,14 +2,16 @@ import { StudentList, StudentEdit, StudentCreate, StudentShow } from '../Lists/S
 import { ApplicantList, ApplicantEdit, ApplicantShow } from '../Lists/ApplicantList';
 import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from '../Lists/AssessmentList';
 import { Admin,Resource} from "react-admin";
-import { dataProvider } from "../App";
 import CustomLayout from "../CustomLayout";
-import {authProvider} from "../App";
+import {PocketBaseProvider} from './ra-pocketbase';
 
+const pbProvider = PocketBaseProvider("https://musical-journey-97j7p7q4vqgv375gj.github.dev/")
 
 const MyAdmin = () => {
     return (
-        <Admin dataProvider={dataProvider}
+        <Admin 
+        dataProvider={pbProvider.dataProvider}
+        authProvider={pbProvider.authProvider}
         layout={CustomLayout}>
             
             <Resource
