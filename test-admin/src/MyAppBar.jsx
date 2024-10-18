@@ -7,7 +7,7 @@ const CustomAppBar = (props) => (
         sx={{ backgroundColor: '#194D6C',height:'200px', marginBottom: '50px' }} // Dark blue background and margin for separation
     >
         {/* Toolbar for holding the elements inside the AppBar */}
-        <Toolbar sx={{ minHeight: '100px', justifyContent: 'space-between' }}> {/* Adjust the height and spacing */}
+        <Toolbar sx={{ minHeight: '100px', justifyContent: 'space-between', position: 'relative' }}> {/* Ensure relative positioning */}
             
             {/* Logo and Title Section */}
 <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -22,8 +22,17 @@ const CustomAppBar = (props) => (
 
             {/* Center Title (Administrator) */}
             <Typography 
-                variant="h6" 
-                sx={{ color: '#FFFFFF',fontFamily:'Times New Roman',  fontSize:'45px', textAlign: 'center', position: 'absolute', left: '50%', transform: 'translateX(-50%)'}}> {/* Center the title */}
+    variant="h6" 
+    sx={{ 
+        color: '#FFFFFF',
+        fontFamily: 'Times New Roman',  
+        fontSize: '45px', 
+        textAlign: 'center', 
+        position: 'absolute', 
+        left: '50%', 
+        transform: 'translateX(-50%)',
+        top: '50%',  // Adjusts vertical centering relative to parent
+    }}> {/* Center the title */}
                 Administrator
             </Typography>
 

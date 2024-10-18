@@ -16,6 +16,9 @@ const menuItemStyles = {
 export const sideBar = {
     padding:'-100px',
     marginTop: '152px',
+    width:'240px',
+    height: '100vh',          // Full viewport height
+
     backgroundColor: '#194D6C',
 }
 
@@ -88,6 +91,10 @@ export const AdminSidebar = (props) => (
         />
     </Sidebar>
 );
+
+
+
+
 
 
 export default CustomSidebar;

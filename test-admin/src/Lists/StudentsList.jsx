@@ -25,9 +25,11 @@ const StudentFilter = (props) => (
     </Toolbar>
 );
 export const StudentEdit = () => (
-    <Edit>
+    <Edit    sx={{ 
+        marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+    }}>
         <SimpleForm>
-            <TextInput source="StudentID" />
+            <TextInput source="StudentNumber" />
             <TextInput source="name" />
             <TextInput source="surname" />
         </SimpleForm>
@@ -48,7 +50,10 @@ export const StudentCreate = () => (
 
 
 export const StudentShow = () => (
-    <Show>
+    <Show
+    sx={{ 
+        marginTop: '150px', // Adjust to prevent overlap with the AppBar (200px height + marginBottom)
+    }}>
         <SimpleShowLayout>
             <TextField source="id" label="ID" />
             <TextField source="StudentID" label="Student ID" />

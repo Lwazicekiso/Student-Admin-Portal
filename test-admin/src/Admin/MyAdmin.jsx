@@ -13,7 +13,6 @@ export const authProvider = PocketBaseProvider(apiUrl).authProvider;
 const MyAdmin = () => {
     return (
         <Admin dataProvider={dataProvider}
-        authProvider={authProvider}
         layout={CustomLayout}>
             
             <Resource
