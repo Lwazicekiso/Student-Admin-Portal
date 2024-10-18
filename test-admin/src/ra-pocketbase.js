@@ -64,8 +64,8 @@ export var PocketBaseProvider = function (apiUrl) {
                                         if (params.filter.name) {
                                             filterParts.push("name~'".concat(params.filter.name, "'"));  // Partial match for name
                                         }
-                                        if (params.filter.StudentID) {
-                                            filterParts.push("StudentID~'".concat(params.filter.StudentID, "'"));  // Partial match for Student ID
+                                        if (params.filter.StudenNumber) {
+                                            filterParts.push("StudentNumber~'".concat(params.filter.StudentNumber, "'"));  // Partial match for Student ID
                                         }
                                     }
             
@@ -205,7 +205,7 @@ export var PocketBaseProvider = function (apiUrl) {
                     var authData;
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, pb.collection('users').authWithPassword(username, password)];
+                            case 0: return [4 /*yield*/, pb.collection('Lecturer').authWithPassword(username, password)];
                             case 1:
                                 authData = _b.sent();
                                 return [2 /*return*/, Promise.resolve()];

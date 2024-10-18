@@ -13,7 +13,7 @@
     "pocketbase": "^0.21.5",
     "ra-data-fakerest": "^5.2.2",
     "react": "^18.3.1",
-    "react-admin": "^5.2.2",
+    "react-admin": "^5.2.3",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {

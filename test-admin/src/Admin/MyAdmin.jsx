@@ -10,6 +10,7 @@ import {authProvider} from "../App";
 const MyAdmin = () => {
     return (
         <Admin dataProvider={dataProvider}
+        authProvider={authProvider}
         layout={CustomLayout}>
             
             <Resource

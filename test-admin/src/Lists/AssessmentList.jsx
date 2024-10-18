@@ -1,4 +1,4 @@
-import { Datagrid, Filter, NumberField, Edit, Create, SimpleForm, DateField, NumberInput, List, Show, SimpleShowLayout, TextField, TextInput } from 'react-admin';
+import { Datagrid, Filter, NumberField, Edit, Create, SimpleForm, NumberInput, List, Show, SimpleShowLayout, TextField, TextInput } from 'react-admin';
 import {dataGridStyle, commonStyles} from './ListStyle'
 
 
