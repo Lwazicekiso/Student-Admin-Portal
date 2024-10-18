@@ -3,20 +3,17 @@ import { ApplicantList, ApplicantEdit, ApplicantShow } from '../Lists/ApplicantL
 import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from '../Lists/AssessmentList';
 import { Admin,Resource} from "react-admin";
 import CustomLayout from "../CustomLayout";
-import {PocketBaseProvider} from './ra-pocketbase';
+import {PocketBaseProvider} from '../ra-pocketbase';
 
-const pbProvider = PocketBaseProvider("https://musical-journey-97j7p7q4vqgv375gj.github.dev/")
 
+const apiUrl = 'https://organic-orbit-jx99v95jj6g2j6x7-8090.app.github.dev'; 
+
+export const dataProvider = PocketBaseProvider(apiUrl).dataProvider;
+export const authProvider = PocketBaseProvider(apiUrl).authProvider;
 const MyAdmin = () => {
     return (
-<<<<<<< HEAD
         <Admin dataProvider={dataProvider}
         authProvider={authProvider}
-=======
-        <Admin 
-        dataProvider={pbProvider.dataProvider}
-        authProvider={pbProvider.authProvider}
->>>>>>> 8a373a69895119fc3b0a44a11e1d776efa7e207e
         layout={CustomLayout}>
             
             <Resource

@@ -15,13 +15,6 @@ import MyAdmin from './Admin/MyAdmin';
 import {PocketBaseProvider} from './ra-pocketbase';
 //import { dataProvider } from './dataProvider'; 
 
-<<<<<<< HEAD
-const apiUrl = 'https://organic-orbit-jx99v95jj6g2j6x7-8090.app.github.dev'; 
-
-export const dataProvider = PocketBaseProvider(apiUrl).dataProvider;
-export const authProvider = PocketBaseProvider(apiUrl).authProvider;
-=======
->>>>>>> 8a373a69895119fc3b0a44a11e1d776efa7e207e
 function App() {
   
 
