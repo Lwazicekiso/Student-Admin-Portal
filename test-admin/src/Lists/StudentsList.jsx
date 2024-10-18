@@ -1,34 +1,29 @@
-import { Datagrid, Edit, Create, SimpleForm,DateField, List, Show, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
+import { Datagrid, Edit, Create, SimpleForm,DateField, List, Show,Toolbar, SimpleShowLayout ,TextField,  TextInput  } from 'react-admin';
 import {Filter } from 'react-admin';
 import {dataGridStyle,commonStyles} from './ListStyle'
 
 
 export const StudentList = () => (
-    <List filters={<StudentFilter />}
-    sx={{commonStyles}}
-    >
-        <Datagrid
-        sx={dataGridStyle}
-        
-        >
+    <List filters={<StudentFilter />} sx={{ ...commonStyles }}>
+        <Datagrid sx={dataGridStyle}>
             <TextField source="id" />
-            <TextField source="StudentID" />
-            <DateField source="created" />
+            <TextField source="StudentNumber" />
             <TextField source="name" />
             <TextField source="surname" />
-            <DateField source="updated" />
         </Datagrid>
     </List>
 );
 
-const StudentFilter = (props) => (
-    <Filter {...props}>
-        <TextInput label="Search by name" source="name" alwaysOn />
-        <TextInput label="Search by surname" source="surname" />
-        <TextInput label="Search by student number" source="studentNumber" />
-    </Filter>
-);
 
+const StudentFilter = (props) => (
+    <Toolbar sx={{ justifyContent: 'center', width: '100%' }}>
+        <Filter {...props} sx={{ display: 'flex', justifyContent: 'center', gap: '20px', width: '100%' }}>
+            <TextInput label="Search by name" source="name" alwaysOn sx={{ width: '300px' }} />
+            <TextInput label="Search by surname" source="surname" sx={{ width: '300px' }} />
+            <TextInput label="Search by student number" source="studentNumber" sx={{ width: '300px' }} />
+        </Filter>
+    </Toolbar>
+);
 export const StudentEdit = () => (
     <Edit>
         <SimpleForm>
