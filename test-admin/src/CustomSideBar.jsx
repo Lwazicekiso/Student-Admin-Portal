@@ -5,6 +5,16 @@ import PersonIcon from '@mui/icons-material/Person';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { useLocation } from 'react-router-dom';  // To get the current URL
 
+//Icons for applicants sidebar
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import LockIcon from '@mui/icons-material/Lock';
+import EmailIcon from '@mui/icons-material/Email';
+import AccessibilityIcon from '@mui/icons-material/Accessibility';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+
+
+
+
 // Shared styles for the menu items
 const menuItemStyles = {
     paddingLeft: '20px',  // Adjust the left padding

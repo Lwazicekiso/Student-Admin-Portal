@@ -1,4 +1,5 @@
 import './App.css';
+
 import {
   Admin,
   Resource,
@@ -11,22 +12,18 @@ import {
 
 // The admin screen component MyAdmin will be rendered later along with other components 
 import MyAdmin from './Admin/MyAdmin';
-
 import {PocketBaseProvider} from './ra-pocketbase';
-//import { dataProvider } from './dataProvider'; 
 
-function App() {
-  
 
-    // Data provider for React Admin
-    return(
-      <>
-          <MyAdmin /> 
-      </>
+const apiUrl = 'https://organic-orbit-jx99v95jj6g2j6x7-8090.app.github.dev'; 
 
-    )
+export const dataProvider = PocketBaseProvider(apiUrl).dataProvider;
+export const authProvider = PocketBaseProvider(apiUrl).authProvider;
 
-    
-}
+const App = () => (
+  <>
+  <MyAdmin/>
+  </>
+);
 
 export default App;

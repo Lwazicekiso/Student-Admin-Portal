@@ -1,9 +1,9 @@
 import { BooleanField, Datagrid, DateField, List, TextField, 
     Edit, SimpleForm, TextInput, BooleanInput, DateInput,
-    Show, SimpleShowLayout
+    Show, SimpleShowLayout,
+    Create,
 } from 'react-admin';
 import {dataGridStyle, commonStyles} from './ListStyle'
-
 // Centralized common styles
 
 
@@ -45,3 +45,11 @@ export const ApplicantShow = () => (
         </SimpleShowLayout>
     </Show>
 );
+
+
+export const ApplicantCreate = ()=>(
+    <Create>
+
+    </Create>
+
+)
