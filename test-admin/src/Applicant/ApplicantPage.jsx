@@ -52,6 +52,12 @@ const styles = {
     },
 };
 
+
+
+
+
+
+
 export const ApplicantForm = () => {
     const [expanded, setExpanded] = useState(false);
 
@@ -144,6 +150,7 @@ export const ApplicantForm = () => {
                             source="course"
                             label="Select Course"
                             fullWidth
+                            validate={required("Choose a Course")}
                             choices={[
                                 { id: 'bachelor_cs', name: 'Bachelor of Computer Science' },
                                 { id: 'bachelor_eng', name: 'Bachelor of Engineering' },
@@ -187,12 +194,14 @@ const PersonalInfo = () => (
             source="firstName"
             label="First Name"
             fullWidth
+            validate={[required('First name is required.'), minLength(2, 'First name must be at least 2 characters long.')] } // Custom error messages
             helperText="Enter your given name as it appears on official documents."
         />
         <TextInput
             source="lastName"
             label="Last Name"
             fullWidth
+            validate={[required('Last name is required.'), minLength(2, 'Last name must be at least 2 characters long.')] } // Custom error messages
             helperText="Enter your family name or surname."
         />
         <SelectInput
@@ -204,6 +213,7 @@ const PersonalInfo = () => (
                 { id: 'female', name: 'Female' },
                 { id: 'other', name: 'Other' }
             ]}
+            validate={[required('Gender selection is required.')]} // Custom error message
             helperText="Select your gender identity."
         />
         <SelectInput
@@ -217,38 +227,48 @@ const PersonalInfo = () => (
                 { id: 'Dr', name: 'Dr' },
                 { id: 'Other', name: 'Other' }
             ]}
+            validate={[required('Title selection is required.')]} // Custom error message
             helperText="Select the appropriate title (e.g., Mr, Mrs, Dr)."
         />
         <DateInput
             source="dob"
             label="Date of Birth"
             fullWidth
+            validate={[required('Date of birth is required.')]} // Custom error message
             helperText="Enter your date of birth in YYYY-MM-DD format."
         />
         <TextInput
             source="nationalId"
             label="Identity Number"
             fullWidth
+            validate={[required('Identity number is required.'), minLength(6, 'Identity number must be at least 6 characters long.')] } // Custom error messages
             helperText="Enter your national identity number."
         />
-        <TextInput
+        <SelectInput
             source="citizen"
             label="Citizen Status"
             fullWidth
-            helperText="Specify your citizenship status."
+            validate={[required('Citizen status is required.')]} // Custom error message
+            helperText="Specify your citizenship status in South Africa."
+            choices={[
+                { id: 'citizen', name: 'Citizen' },
+                { id: 'permanent_resident', name: 'Permanent Resident' },
+                { id: 'temporary_resident', name: 'Temporary Resident' },
+                { id: 'green_card', name: 'Work Visa' },
+                { id: 'non_citizen', name: 'Non-Citizen' }
+            ]}
         />
         <TextInput
             source="country"
             label="Country of Birth"
             fullWidth
+            validate={[required('Country of birth is required.')]} // Custom error message
             helperText="Enter the country where you were born."
         />
     </>
 );
-
 // form for selecting course
 const CourseForm = () => (
-    <SimpleForm>
         <SelectInput 
             source="course" 
             choices={[
@@ -260,7 +280,6 @@ const CourseForm = () => (
                 { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor in Supply Chain and Information Analysis' },
             ]}
         />
-    </SimpleForm>
 );
 
 
@@ -268,30 +287,28 @@ const ContactInfo = () => (
     <>
         <TextInput
             source="email"
-            label="Email Address"
+            label="Email"
             fullWidth
-            helperText="Enter your primary email address."
+            validate={[required('Email is required.'), email('Enter a valid email address.')]} // Custom error messages
+            helperText="Enter a valid email address."
         />
         <TextInput
-            source="phone"
-            label="Phone Number"
+            source="mobile"
+            label="Mobile Number"
             fullWidth
-            helperText="Enter your contact phone number."
+            validate={[required('Mobile number is required.'),minLength(10), maxLength(10)] } // Custom error message
+            helperText="Enter a valid mobile number."
         />
-        <ArrayInput source="emergencyContacts" label="Emergency Contacts" helperText="Add emergency contact details.">
-            <SimpleFormIterator inline>
-                <TextInput source="code" label="Country Code" helperText="Enter the country code of the contact number." />
-                <NumberInput source="number" label="Contact Number" helperText="Enter the contact number of the emergency contact." />
-            </SimpleFormIterator>
-        </ArrayInput>
         <TextInput
-            source="altEmail"
-            label="Alternative Email"
+            source="address"
+            label="Residential Address"
             fullWidth
-            helperText="Enter an alternative email address (optional)."
+            validate={[required('Residential address is required.')] } // Custom error message
+            helperText="Enter your current residential address."
         />
     </>
 );
+
 
 const Disabilities = () => {
     const [hasDisability, setHasDisability] = useState(false);
@@ -301,6 +318,7 @@ const Disabilities = () => {
             <BooleanInput
                 source="hasDisability"
                 label="Do you have any disabilities?"
+                validate={[required()]}
                 onChange={(e) => setHasDisability(e.target.checked)}
                 helperText="Check if you have a disability that you would like to disclose."
             />
@@ -316,12 +334,24 @@ const Disabilities = () => {
     );
 };
 
+// form validation
+const maxThree = (value) => {
+    if (value > 3) {
+        return 'Grade must be less than or equal to 3';
+    }
+    return undefined; // No error
+};
+
+
+
+
 const AcademicHistory = () => (
     <>
         <TextInput
             source="highSchool"
             label="High School Name"
             fullWidth
+            validate={[required()]}
             helperText="Enter the name of the high school you attended."
         />
 <ArrayInput source="grades">
@@ -381,8 +411,11 @@ const AcademicHistory = () => (
                 { id: 'electrical_technology', name: 'Electrical Technology' },
             ]}
         />
-        <NumberInput source="grade" label="Final Grade"  fullWidth />
+        <NumberInput source="grade" label="Final Grade" validate={[required(), maxThree]}  fullWidth />
+
     </SimpleFormIterator>
+    <DateInput source="startDate" label="Start Date" validate={[required()]} />
+    <DateInput source="endDate" label="End Date" validate={[required()]} />
 </ArrayInput>
 
 
