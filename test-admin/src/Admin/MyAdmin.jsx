@@ -14,7 +14,7 @@ const MyAdmin = () => {
     return (
         <Admin 
         dataProvider={dataProvider}
-        authProvider={}
+        authProvider={authprovider}
         layout={CustomLayout}>
             
             <Resource
