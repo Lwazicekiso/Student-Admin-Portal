@@ -12,7 +12,7 @@ const CustomAppBar = (props) => (
             {/* Logo and Title Section */}
 <Box sx={{ display: 'flex', alignItems: 'center' }}>
     {/* Logo */}
-    <img src="/Cape_college_logo.png" alt="Logo" style={{ height: 40, marginRight: 16 }} />
+    <img src="src/Cape_college_logo.png" alt="Logo" style={{ height: 40, marginRight: 16 }} />
     {/* Title "Cape College" */}
     <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#FFFFFF' }}>
         Cape College
