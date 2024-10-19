@@ -99,6 +99,14 @@ function App() {
             show={ShowGuesser}
           />
 
+          <Resource
+            name="Assesment"
+            list={ListGuesser}
+            edit={EditGuesser}
+            show={ShowGuesser}
+          />
+
+
           
         </Admin>
     );
