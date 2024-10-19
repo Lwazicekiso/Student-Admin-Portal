@@ -1,5 +1,5 @@
-import { Datagrid, Filter, NumberField, Edit, Create, SimpleForm, DateField, NumberInput, List, Show, SimpleShowLayout, TextField, TextInput } from 'react-admin';
-import {dataGridStyle, commonStyles} from './ListStyle'
+import { Datagrid, Filter, NumberField, Edit, Create, SimpleForm, NumberInput, List, Show, SimpleShowLayout, TextField, TextInput } from 'react-admin';
+import {dataGridStyle} from './ListStyle'
 
 
 export const AssessmentList = () => (
@@ -12,8 +12,9 @@ export const AssessmentList = () => (
         sx={dataGridStyle}
         >
             <NumberField source="Mark" />
-            <TextField source="Module_Name" />
-            <TextField source="StudentID" />
+            <TextField source="Name" label="Module Name" />
+            <TextField source="StudentNumber" />
+            <TextField source="Status"/>
             <TextField source="id" />
         </Datagrid>
     </List>

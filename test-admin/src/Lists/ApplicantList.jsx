@@ -1,9 +1,9 @@
 import { BooleanField, Datagrid, DateField, List, TextField, 
     Edit, SimpleForm, TextInput, BooleanInput, DateInput,
-    Show, SimpleShowLayout
+    Show, SimpleShowLayout,
+    Create,
 } from 'react-admin';
 import {dataGridStyle, commonStyles} from './ListStyle'
-
 // Centralized common styles
 
 
@@ -16,7 +16,7 @@ export const ApplicantList = () => (
             <TextField sx={{padding:'15px'}} source="Name" label="Applicant Name" /> {/* Added label */}
             <TextField source="Surname" label="Last Name" /> {/* Added label */}
             <TextField source="id" label="Application ID" /> {/* Use label instead of title */}
-            <BooleanField source="Status" label="Status" />
+            <BooleanField source="Acceptance" label="Status" />
         </Datagrid>
     </List>
 );
@@ -45,3 +45,11 @@ export const ApplicantShow = () => (
         </SimpleShowLayout>
     </Show>
 );
+
+
+export const ApplicantCreate = ()=>(
+    <Create>
+
+    </Create>
+
+)

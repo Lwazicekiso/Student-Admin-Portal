@@ -7,6 +7,7 @@ export const dataGridStyle = {                        '& .RaDatagrid-headerCell'
 },
 '& .RaDatagrid-rowCell': {
     padding: '20px',  // Adjusts padding for the row cells
+    marginRight:'240px',
     fontSize: '16px',  // Adjusts font size for the row cells
 }}
 
