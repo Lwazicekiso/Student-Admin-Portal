@@ -6,15 +6,16 @@ import CustomLayout from "../CustomLayout";
 import {PocketBaseProvider} from '../ra-pocketbase';
 
 
-const apiUrl = 'https://musical-journey-97j7p7q4vqgv375gj-8090.app.github.dev/'; 
+const apiUrl = 'https://organic-orbit-jx99v95jj6g2j6x7-8090.app.github.dev'; 
 
 export const dataProvider = PocketBaseProvider(apiUrl).dataProvider;
 export const authProvider = PocketBaseProvider(apiUrl).authProvider;
+
 const MyAdmin = () => {
     return (
         <Admin 
         dataProvider={dataProvider}
-        authProvider={authprovider}
+        authProvider={authProvider}
         layout={CustomLayout}>
             
             <Resource
