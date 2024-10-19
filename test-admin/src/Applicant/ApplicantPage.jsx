@@ -344,3 +344,48 @@ const PersonalEssay=()=>(
    </>
 
 );
+
+
+
+/*
+
+In PocketBase, each field needs to have a specific data type depending on its usage. Here's the breakdown of the appropriate field types for each field in the form:
+
+1. Personal Information
+firstName: Text field (Single Line).
+lastName: Text field (Single Line).
+gender: Select field (with options: Male, Female, Other).
+title: Select field (with options: Mr, Mrs, Ms, Dr, Other).
+dob: Date field.
+nationalId: Text field (Single Line).
+citizen: Text field (Single Line).
+country: Text field (Single Line).
+
+
+2. Contact Information
+email: Email field.
+phone: Text field (Single Line, or Phone field if available).
+emergencyContacts: JSON field (contains an array of objects with the following subfields):
+code: Text field (Single Line) for country code.
+number: Number field for contact number.
+
+altEmail: Email field (optional).
+
+
+
+3. Disabilities
+hasDisability: Boolean field (true/false).
+disabilityDetails: Text field (Single Line or Multiline), visible only when hasDisability is true.
+
+
+4. Academic History
+highSchool: Text field (Single Line).
+grades: JSON field (contains an array of objects with the following subfields):
+subject: Select field (with a list of subjects as options).
+grade: Number field for the final grade.
+
+
+5. Personal Essay
+essay: Text field (Multiline) for longer text.
+
+*/
