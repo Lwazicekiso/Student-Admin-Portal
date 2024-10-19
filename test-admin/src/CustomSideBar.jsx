@@ -22,13 +22,13 @@ const menuItemStyles = {
     marginRight: '20px',
     color: '#FFFFFF',  // Default text color to white
     height:'10%'
+    
 };
 
 export const sideBar = {
     padding: '-100px',
     marginTop: '152px',
     width: '240px',
-    height: '100vh',  // Full viewport height
     backgroundColor: '#194D6C',
 };
 
@@ -48,7 +48,7 @@ export const CustomSidebar = (props) => {
 
     return (
         <Sidebar {...props} sx={sideBar}>
-            {/* Menu item for Students */}
+            {/* Menu items for Students */}
             <MenuItemLink 
                 sx={{
                     ...menuItemStyles,
@@ -119,7 +119,7 @@ export const AdminSidebar = (props) => (
     >
         {/* Menu item for Students */}
         <MenuItemLink 
-            sx={menuItemStyles}  // Apply padding here
+            sx={menuItemStyles} 
             to="/students" 
             primaryText="Students"
             leftIcon={<SchoolIcon sx={{ color: '#FFFFFF' }} />}  // Set icon color to white
@@ -127,7 +127,7 @@ export const AdminSidebar = (props) => (
         
         {/* Menu item for Applicants */}
         <MenuItemLink 
-            sx={menuItemStyles}  // Apply padding here
+            sx={menuItemStyles} 
             to="/applicant" 
             primaryText="Applicants"
             leftIcon={<PersonIcon sx={{ color: '#FFFFFF' }} />}  // Set icon color to white
@@ -135,7 +135,7 @@ export const AdminSidebar = (props) => (
         
         {/* Menu item for Assessments */}
         <MenuItemLink 
-            sx={menuItemStyles}  // Apply padding here
+            sx={menuItemStyles}  
             to="/assessment" 
             primaryText="Assessments"
             leftIcon={<AssessmentIcon sx={{ color: '#FFFFFF' }} />}  // Set icon color to white

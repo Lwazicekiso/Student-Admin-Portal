@@ -1,5 +1,5 @@
-import { Create, SimpleForm, TextInput, DateInput, BooleanInput, Toolbar, SaveButton } from 'react-admin';
-import { Accordion, AccordionSummary, AccordionDetails, Typography, Box, ArrayInput, SimpleFormIterator, NumberInput, SelectInput, Button } from '@mui/material';
+import { Create, SimpleForm, TextInput, DateInput, BooleanInput, Toolbar, SaveButton,ArrayInput,SimpleFormIterator,Button,NumberInput,SelectInput } from 'react-admin';
+import { Accordion, AccordionSummary, AccordionDetails, Typography, Box } from '@mui/material';
 import { useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LockIcon from '@mui/icons-material/Lock';
@@ -7,12 +7,27 @@ import EmailIcon from '@mui/icons-material/Email';
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
 import SchoolIcon from '@mui/icons-material/School';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+
+// for form validation
+import {
+    required,
+    minLength,
+    maxLength,
+    minValue,
+    maxValue,
+    number,
+    regex,
+    email,
+    choices
+} from 'react-admin';
 // Reusable styling variables
 const styles = {
     accordionHeader: {
         backgroundColor: '#1A496D',
         color: '#FFF',
         padding: '10px',
+  
+
     },
     accordionDetails: {
         backgroundColor: '#F7F9FC',
@@ -24,7 +39,7 @@ const styles = {
         marginRight: '10px',
     },
     saveButton: {
-        backgroundColor: '#FF5722',
+        backgroundColor: 'red',
         color: '#FFF',
         fontWeight: 'bold',
         '&:hover': {
@@ -64,7 +79,7 @@ export const ApplicantForm = () => {
         </Accordion>
 
         {/* Accordion for the "Contact Information" section */}
-        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} sx={{ width: '100%', borderRadius:'10%' }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
                 {/* EmailIcon to visually indicate the section */}
                 <EmailIcon sx={styles.iconMargin} />
@@ -78,7 +93,7 @@ export const ApplicantForm = () => {
         </Accordion>
 
         {/* Accordion for the "Disabilities" section */}
-        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} sx={{ width: '100%' }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
                 {/* AccessibilityIcon to visually indicate the section */}
                 <AccessibilityIcon sx={styles.iconMargin} />
@@ -92,7 +107,7 @@ export const ApplicantForm = () => {
         </Accordion>
 
         {/* Accordion for the "Academic History" section */}
-        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')} sx={{ width: '100%' }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
                 {/* SchoolIcon to visually indicate the section */}
                 <SchoolIcon sx={styles.iconMargin} />
@@ -106,7 +121,7 @@ export const ApplicantForm = () => {
         </Accordion>
 
         {/* Accordion for the "Personal Essay" section */}
-        <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
+        <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')} sx={{ width: '100%' }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
                 {/* AssignmentIcon to visually indicate the section */}
                 <AssignmentIcon sx={styles.iconMargin} />
@@ -118,6 +133,36 @@ export const ApplicantForm = () => {
                 <PersonalEssay />
             </AccordionDetails>
         </Accordion>
+        {/* Accordion for Course selection*/}
+        <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')} sx={{ width: '100%' }}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
+                        <SchoolIcon sx={styles.iconMargin} />
+                        <Typography variant="h6">6. Course Selection</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails sx={styles.accordionDetails}>
+                        <SelectInput
+                            source="course"
+                            label="Select Course"
+                            fullWidth
+                            choices={[
+                                { id: 'bachelor_cs', name: 'Bachelor of Computer Science' },
+                                { id: 'bachelor_eng', name: 'Bachelor of Engineering' },
+                                { id: 'bachelor_arts', name: 'Bachelor of Arts' },
+                                { id: 'bachelor_business', name: 'Bachelor of Business Administration' },
+                                { id: 'bachelor_med', name: 'Bachelor of Medicine' },
+                                { id: 'bachelor_law', name: 'Bachelor of Law' },
+                                { id: 'bachelor_psychology', name: 'Bachelor of Psychology' },
+                                { id: 'bachelor_social_science', name: 'Bachelor of Social Science' },
+                                { id: 'bachelor_health_science', name: 'Bachelor of Health Science' },
+                                { id: 'Bachelor_of_Data_Analysis', name: 'Bachelor in Data Analysis' },
+                                { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor of Supply Chain' },
+                                { id: 'Bachelor_of_Data_Analysis', name: 'Bachelor of Data Analysis' },
+                                { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor og Information Analysis' },
+                            ]}
+                            helperText="Select the bachelor's degree program you wish to enroll in."
+                        />
+                    </AccordionDetails>
+                </Accordion>
         
     </SimpleForm>
 </Create>
@@ -200,6 +245,24 @@ const PersonalInfo = () => (
         />
     </>
 );
+
+// form for selecting course
+const CourseForm = () => (
+    <SimpleForm>
+        <SelectInput 
+            source="course" 
+            choices={[
+                { id: 'Bachelor_of_Science', name: 'Bachelor of Science' },
+                { id: 'Bachelor_of_Arts', name: 'Bachelor of Arts' },
+                { id: 'Bachelor_of_Commerce', name: 'Bachelor of Commerce' },
+                { id: 'Bachelor_of_Engineering', name: 'Bachelor of Engineering' },
+                { id: 'Bachelor_of_Data_Analysis', name: 'Bachelor in Data Analysis' },
+                { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor in Supply Chain and Information Analysis' },
+            ]}
+        />
+    </SimpleForm>
+);
+
 
 const ContactInfo = () => (
     <>

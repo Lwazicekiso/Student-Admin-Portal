@@ -5,7 +5,7 @@ import { BooleanField, Datagrid, DateField, List, TextField,
 } from 'react-admin';
 import {dataGridStyle, commonStyles} from './ListStyle'
 // Centralized common styles
-
+import {ApplicantForm} from '../Applicant/ApplicantPage'
 
 
 export const ApplicantList = () => (
@@ -20,6 +20,7 @@ export const ApplicantList = () => (
         </Datagrid>
     </List>
 );
+
 
 export const ApplicantEdit = () => (
     <Edit sx={commonStyles}>
@@ -48,7 +49,11 @@ export const ApplicantShow = () => (
 
 
 export const ApplicantCreate = ()=>(
-    <Create>
+    <Create
+    sx={{ 
+        marginTop: '150px', // Adjusting to prevent overlap with the AppBar (200px height + marginBottom)
+    }}>
+        <ApplicantForm/>
 
     </Create>
 

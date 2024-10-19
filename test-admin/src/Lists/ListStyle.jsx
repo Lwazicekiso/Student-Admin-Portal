@@ -1,6 +1,7 @@
 
 
-export const dataGridStyle = {                        '& .RaDatagrid-headerCell': {
+export const dataGridStyle = {                        
+    '& .RaDatagrid-headerCell': {
     padding: '16px',  // Adjusts padding for the header cells
     fontSize: '18px',  // Adjusts font size for the header cells
     color:'#4899ea'

@@ -1,5 +1,5 @@
 import { StudentList, StudentEdit, StudentCreate, StudentShow } from '../Lists/StudentsList';
-import { ApplicantList, ApplicantEdit, ApplicantShow } from '../Lists/ApplicantList';
+import { ApplicantList, ApplicantEdit,ApplicantCreate, ApplicantShow } from '../Lists/ApplicantList';
 import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from '../Lists/AssessmentList';
 import { Admin,Resource} from "react-admin";
 import CustomLayout from "../CustomLayout";
@@ -31,6 +31,7 @@ const MyAdmin = () => {
                 list={ApplicantList}
                 edit={ApplicantEdit}
                 show={ApplicantShow}
+                create={ApplicantCreate}
             />
             <Resource
                 name="Assessment"

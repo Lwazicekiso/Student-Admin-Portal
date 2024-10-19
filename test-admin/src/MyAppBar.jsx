@@ -3,12 +3,18 @@ import * as React from 'react';
 import { forwardRef } from 'react';
 import { MenuItem } from '@mui/material';
 import { useLogout, useGetIdentity, useGetOne } from 'react-admin';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+
 
 // Custom AppBar styles
 const AppBarStyle = {
     backgroundColor: '#194D6C',
     height: '200px',
     marginBottom: '50px',
+    position: 'fixed',  // Fix AppBar at the top
+    top: 0,
+    width: '100%',  // Ensure it spans the full width
+    zIndex: 1100,  // Higher than sidebar to stay above it
 };
 
 // Custom Logout Button
@@ -124,3 +130,49 @@ const CustomAppBar = (props) => {
 };
 
 export default CustomAppBar;
+
+
+
+// applcant app bar :
+export const applicantAppBar = (props) => {
+    return (
+        <AppBar
+            {...props}
+            sx={AppBarStyle} // Custom styling for applicants
+        >
+            <Toolbar sx={{ minHeight: '90px', justifyContent: 'space-between', position: 'relative' }}>
+                {/* Logo and Title Section */}
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <img
+                        src="src/Cape_college_logo.png" // Ensure this path is correct
+                        alt="Logo"
+                        style={{ height: 35, marginRight: 12 }}
+                    />
+                    <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#FFFFFF' }}>
+                        Cape College
+                    </Typography>
+                </Box>
+
+                {/* Centered Title: "Applicant" */}
+                <Typography
+                    variant="h6"
+                    sx={{
+                        color: '#FFFFFF',
+                        fontFamily: 'Georgia',
+                        fontSize: '40px',
+                        textAlign: 'center',
+                        position: 'absolute',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        top: '50%',
+                    }}
+                >
+                    Applicant
+                </Typography>
+
+                {/*assignment icon*/}
+                <AssignmentIcon/>
+            </Toolbar>
+        </AppBar>
+    );
+};
