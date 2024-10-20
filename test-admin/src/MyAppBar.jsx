@@ -49,9 +49,8 @@ const MyLogoutButton = forwardRef((props, ref) => {
 // User Section Component fetches and returns user data mainly user name and users avatar
 const UserSection = () => {
     const { identity, isLoading: isIdentityLoading } = useGetIdentity();
-    const { data: userData, isLoading: isUserLoading } = useGetOne('users', { id: identity?.id });
 
-    if (isIdentityLoading || isUserLoading) {
+    if (isIdentityLoading) {
         return null; // Handle loading state
     }
 
@@ -73,7 +72,7 @@ const UserSection = () => {
                     height: 50,
                     marginTop: 2,
                 }}
-                src={userData?.avatar} // Use user avatar from the API response
+                src={identity?.avatar} // Use user avatar from the identity response
             />
             {/* Staff Role */}
             <Typography sx={{ fontSize: '18px', fontWeight: 'bold' }}>

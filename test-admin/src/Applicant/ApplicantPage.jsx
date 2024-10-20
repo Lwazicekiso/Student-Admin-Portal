@@ -163,8 +163,8 @@ export const ApplicantForm = () => {
                                 { id: 'bachelor_health_science', name: 'Bachelor of Health Science' },
                                 { id: 'Bachelor_of_Data_Analysis', name: 'Bachelor in Data Analysis' },
                                 { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor of Supply Chain' },
-                                { id: 'Bachelor_of_Data_Analysis', name: 'Bachelor of Data Analysis' },
-                                { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor og Information Analysis' },
+                                { id: 'Bachelor_of_Data_Analysis', name: 'Bachelor of Commerce :Accounting science ' },
+                                { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor of Information Analysis' },
                             ]}
                             helperText="Select the bachelor's degree program you wish to enroll in."
                         />

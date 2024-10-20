@@ -206,8 +206,7 @@ export var PocketBaseProvider = function (apiUrl) {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
                             case 0: return [4 /*yield*/, pb.collection('users').authWithPassword(username, password)];
-                            case 1: return [4 /*yield*/, pb.collection('Lecturers').authWithPassword(username, password)];
-                            case 2:
+                            case 1:
                                 authData = _b.sent();
                                 return [2 /*return*/, Promise.resolve()];
                         }
