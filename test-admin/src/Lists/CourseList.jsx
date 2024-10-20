@@ -23,21 +23,6 @@ export const CourseList = () => (
     </List>
 );
 
-export const CourseEdit = () => (
-    <Edit>
-        <SimpleForm>
-            <TextInput source="Name" />
-        </SimpleForm>
-    </Edit>
-);
-
-export const CourseCreate = () => (
-    <Create>
-        <SimpleForm>
-            <TextInput source="Name" />
-        </SimpleForm>
-    </Create>
-);
 
 export const CourseShow = () => (
     <Show>
