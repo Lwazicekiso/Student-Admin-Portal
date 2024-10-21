@@ -27,6 +27,14 @@ const MyLogin = () => {
                 </Link>
                 <p>Student</p>
             </div>
+
+            <div style={{ textAlign: 'center' }}>
+                <Link to="/applicant">
+                    <img src="src/images/student_symbol.jpg" alt="admin" className="image" />
+                </Link>
+                <p>Applicant</p>
+            </div>
+
         </div>
     );
 };

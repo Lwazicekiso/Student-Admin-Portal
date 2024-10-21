@@ -16,7 +16,7 @@ const StaffAppBar = (props) => {
     return (
         <AppBar
             {...props}
-            sx={{ backgroundColor: '#194D6C', height: '200px', marginBottom: '50px' }}
+            sx={{ backgroundColor: '#194D6C', height: '200px', marginBottom: '503px' }}
         >
             <Toolbar sx={{ minHeight: '100px', justifyContent: 'space-between', position: 'relative' }}>
                 {/* Logo and Title Section */}

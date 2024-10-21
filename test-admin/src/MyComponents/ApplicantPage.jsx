@@ -441,7 +441,7 @@ const PersonalEssay=()=>(
 
 );
 
-
+export default ApplicantForm;
 
 /*
 

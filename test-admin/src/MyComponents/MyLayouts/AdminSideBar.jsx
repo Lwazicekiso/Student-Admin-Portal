@@ -26,10 +26,12 @@ const menuItemStyles = {
 
 export const sideBar = {
     padding: '-100px',
-    marginTop: '152px',
+    marginTop: '350px',
     width: '240px',
     height: '100vh',  // Full viewport height
     backgroundColor: '#194D6C',
+    marginLeft:'-600px'
+    
 };
 
 const activeStyles = {

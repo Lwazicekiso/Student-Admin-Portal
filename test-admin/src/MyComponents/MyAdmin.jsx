@@ -1,6 +1,6 @@
-import { StudentList, StudentEdit, StudentCreate, StudentShow } from '../Lists/StudentsList';
-import { ApplicantList, ApplicantEdit,ApplicantCreate, ApplicantShow } from '../Lists/ApplicantList';
-import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from '../Lists/AssessmentList';
+import { StudentList, StudentEdit, StudentCreate, StudentShow } from './Lists/StudentsList';
+import { ApplicantList, ApplicantEdit,ApplicantCreate, ApplicantShow } from './Lists/ApplicantList';
+import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from './Lists/AssessmentList';
 import { Admin,Resource} from "react-admin";
 import AdminLayout from "./MyLayouts/AdminLayout";
 import {PocketBaseProvider} from '../ra-pocketbase';

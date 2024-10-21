@@ -5,7 +5,7 @@ import { BooleanField, Datagrid, DateField, List, TextField,
 } from 'react-admin';
 import {dataGridStyle, commonStyles} from './ListStyle'
 // Centralized common styles
-import {ApplicantForm} from '../Applicant/ApplicantPage'
+import {ApplicantForm} from '../ApplicantPage'
 
 
 export const ApplicantList = () => (
