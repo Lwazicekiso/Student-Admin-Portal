@@ -1,14 +1,9 @@
 import './App.css';
-import {
-  Admin,
-  Resource,
-  ListGuesser,
-  EditGuesser,
-  ShowGuesser,
-  ListActions,
 
-} from "react-admin";
+// The admin screen component MyAdmin will be rendered later along with other components 
+import MyAdmin from './Admin/MyAdmin';
 
+<<<<<<< HEAD
 import { ModuleList } from './ModuleList';
 import {StudentList} from './StudentsList';
 import {ApplicantList} from './ApplicantList';
@@ -111,5 +106,12 @@ function App() {
         </Admin>
     );
 }
+=======
+const App = () => (
+  <>
+  <MyAdmin/>
+  </>
+);
+>>>>>>> 606b8e9ca190bdfd38a9a8162bfa2ab5430410fe
 
 export default App;
