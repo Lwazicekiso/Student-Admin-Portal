@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 import { AppBar, Toolbar, Typography, Box, Avatar, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom'; // Assuming you're using react-router for navigation
 import PocketBase from 'pocketbase'; // Import PocketBase SDK
 
 const pb = new PocketBase('https://musical-journey-97j7p7q4vqgv375gj-8090.app.github.dev/'); // Update with your PocketBase URL
+=======
+import { AppBar, Toolbar, Typography, Box, Avatar } from '@mui/material';
+import * as React from 'react';
+import { forwardRef } from 'react';
+import { MenuItem } from '@mui/material';
+import { useLogout, useGetIdentity, useGetOne } from 'react-admin';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+>>>>>>> 7b233cbacfcbbe01e6397e41133450e38d32bb7f
 
 // Define the logout function
 const handleLogout = (navigate) => {
@@ -10,6 +19,7 @@ const handleLogout = (navigate) => {
     navigate('/');   // Redirect to login page
 };
 
+<<<<<<< HEAD
 const CustomAppBar = (props) => {
     const navigate = useNavigate(); // Hook for navigation
 
@@ -17,17 +27,115 @@ const CustomAppBar = (props) => {
         <AppBar
             {...props}
             sx={{ backgroundColor: '#194D6C', height: '200px', marginBottom: '50px' }}
+=======
+// Custom AppBar styles
+const AppBarStyle = {
+    backgroundColor: '#194D6C',
+    height: '200px',
+    marginBottom: '50px',
+    position: 'fixed',  // Fix AppBar at the top
+    top: 0,
+    width: '100%',  // Ensure it spans the full width
+    zIndex: 1100,  // Higher than sidebar to stay above it
+};
+
+// Custom Logout Button
+const MyLogoutButton = forwardRef((props, ref) => {
+    const logout = useLogout();
+    const handleClick = () => logout();
+
+    return (
+        <MenuItem
+            onClick={handleClick}
+            ref={ref}
+            {...props}
+            sx={{
+                fontSize: '14px',
+                textTransform: 'none',
+                backgroundColor: '#FFFFFF',
+                color: '#194D6C',
+                '&:hover': {
+                    backgroundColor: '#194D6C',
+                    color: '#FFFFFF',
+                },
+                '& .MuiSvgIcon-root': {
+                    color: '#194D6C',
+                },
+            }}
+        >
+            Log out
+        </MenuItem>
+    );
+});
+
+// User Section Component fetches and returns user data mainly user name and users avatar
+const UserSection = () => {
+    const { identity, isLoading: isIdentityLoading } = useGetIdentity();
+
+    if (isIdentityLoading) {
+        return null; // Handle loading state
+    }
+
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'column', // Stack elements vertically
+                color: '#FFFFFF',
+            }}
+        >
+            {/* Avatar */}
+            <Avatar
+                sx={{
+                    bgcolor: '#FFFFFF',
+                    color: '#194D6C',
+                    width: 50,
+                    height: 50,
+                    marginTop: 2,
+                }}
+                src={identity?.avatar} // Use user avatar from the identity response
+            />
+            {/* Staff Role */}
+            <Typography sx={{ fontSize: '18px', fontWeight: 'bold' }}>
+                Staff
+            </Typography>
+            {/* Logout Button */}
+            <MyLogoutButton sx={{ fontSize: '14px', textTransform: 'none' }} />
+        </Box>
+    );
+};
+
+// Main Custom AppBar Component
+const CustomAppBar = (props) => {
+    return (
+        <AppBar
+            {...props}
+            sx={AppBarStyle} // Use sx prop for styling
+>>>>>>> 7b233cbacfcbbe01e6397e41133450e38d32bb7f
         >
             <Toolbar sx={{ minHeight: '100px', justifyContent: 'space-between', position: 'relative' }}>
                 {/* Logo and Title Section */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
+<<<<<<< HEAD
                     <img src="src/Cape_college_logo.png" alt="Logo" style={{ height: 40, marginRight: 16 }} />
+=======
+                    <img
+                        src="src/Cape_college_logo.png" // Ensure this path is correct
+                        alt="Logo"
+                        style={{ height: 40, marginRight: 16 }}
+                    />
+>>>>>>> 7b233cbacfcbbe01e6397e41133450e38d32bb7f
                     <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#FFFFFF' }}>
                         Cape College
                     </Typography>
                 </Box>
 
+<<<<<<< HEAD
                 {/* Center Title (Administrator) */}
+=======
+                {/* Centered Title: "Administrator" */}
+>>>>>>> 7b233cbacfcbbe01e6397e41133450e38d32bb7f
                 <Typography
                     variant="h6"
                     sx={{
@@ -43,6 +151,7 @@ const CustomAppBar = (props) => {
                 >
                     Administrator
                 </Typography>
+<<<<<<< HEAD
 
                 {/* User Section (Avatar and Log Out Button) */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -61,3 +170,60 @@ const CustomAppBar = (props) => {
 };
 
 export default CustomAppBar;
+=======
+
+                {/* User Section Component */}
+                <UserSection />
+            </Toolbar>
+        </AppBar>
+    );
+};
+
+export default CustomAppBar;
+
+
+
+// applcant app bar :
+export const applicantAppBar = (props) => {
+    return (
+        <AppBar
+            {...props}
+            sx={AppBarStyle} // Custom styling for applicants
+        >
+            <Toolbar sx={{ minHeight: '90px', justifyContent: 'space-between', position: 'relative' }}>
+                {/* Logo and Title Section */}
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <img
+                        src="src/Cape_college_logo.png" // Ensure this path is correct
+                        alt="Logo"
+                        style={{ height: 35, marginRight: 12 }}
+                    />
+                    <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#FFFFFF' }}>
+                        Cape College
+                    </Typography>
+                </Box>
+
+                {/* Centered Title: "Applicant" */}
+                <Typography
+                    variant="h6"
+                    sx={{
+                        color: '#FFFFFF',
+                        fontFamily: 'Georgia',
+                        fontSize: '40px',
+                        textAlign: 'center',
+                        position: 'absolute',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        top: '50%',
+                    }}
+                >
+                    Applicant
+                </Typography>
+
+                {/*assignment icon*/}
+                <AssignmentIcon/>
+            </Toolbar>
+        </AppBar>
+    );
+};
+>>>>>>> 7b233cbacfcbbe01e6397e41133450e38d32bb7f
