@@ -1,5 +1,4 @@
 import { Datagrid, Edit, Create, Filter, SimpleForm, DateField, List, Show, SimpleShowLayout, TextField, TextInput } from 'react-admin';
-
 // Define the CourseFilter component, accepting props
 export const CourseFilter = (props) => (
     <Filter {...props}>
