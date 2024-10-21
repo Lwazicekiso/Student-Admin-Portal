@@ -41,7 +41,7 @@ const StaffAppBar = (props) => {
                         top: '50%',
                     }}
                 >
-                    Staff
+                    Lecturer
                 </Typography>
 
                 {/* User Section (Avatar and Log Out Button) */}

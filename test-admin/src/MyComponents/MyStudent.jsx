@@ -16,21 +16,6 @@ const MyStudent = () => {
         dataProvider={dataProvider}
         authProvider={authProvider}
         layout={StudentLayout}>
-            
-            <Resource
-                name="Students"
-                list={StudentList}
-                edit={StudentEdit}
-                show={StudentShow}
-                create={StudentCreate}
-                
-            />
-            <Resource
-                name="Applicant"
-                list={ApplicantList}
-                edit={ApplicantEdit}
-                show={ApplicantShow}
-            />
             <Resource
                 name="Assessment"
                 list={AssessmentList}
