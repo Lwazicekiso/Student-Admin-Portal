@@ -2,7 +2,7 @@ import { StudentList, StudentEdit, StudentCreate, StudentShow } from '../Lists/S
 import { ApplicantList, ApplicantEdit, ApplicantShow } from '../Lists/ApplicantList';
 import { AssessmentList, AssessmentCreate, AssessmentShow, AssessmentEdit } from '../Lists/AssessmentList';
 import { Admin,Resource} from "react-admin";
-import CustomLayout from "../CustomLayout";
+import AdminLayout from "./MyLayouts/AdminLayout";
 import {PocketBaseProvider} from '../ra-pocketbase';
 
 
@@ -14,8 +14,8 @@ const MyAdmin = () => {
     return (
         <Admin 
         dataProvider={dataProvider}
-        authProvider={authprovider}
-        layout={CustomLayout}>
+        authProvider={authProvider}
+        layout={AdminLayout}>
             
             <Resource
                 name="Students"

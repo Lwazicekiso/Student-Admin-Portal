@@ -10,7 +10,7 @@ const handleLogout = (navigate) => {
     navigate('/');   // Redirect to login page
 };
 
-const CustomAppBar = (props) => {
+const StudentAppBar = (props) => {
     const navigate = useNavigate(); // Hook for navigation
 
     return (
@@ -21,7 +21,7 @@ const CustomAppBar = (props) => {
             <Toolbar sx={{ minHeight: '100px', justifyContent: 'space-between', position: 'relative' }}>
                 {/* Logo and Title Section */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <img src="src/Cape_college_logo.png" alt="Logo" style={{ height: 40, marginRight: 16 }} />
+                    <img src="src/images/Cape_college_logo.png" alt="Logo" style={{ height: 40, marginRight: 16 }} />
                     <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#FFFFFF' }}>
                         Cape College
                     </Typography>
@@ -41,7 +41,7 @@ const CustomAppBar = (props) => {
                         top: '50%',
                     }}
                 >
-                    Administrator
+                    Staff
                 </Typography>
 
                 {/* User Section (Avatar and Log Out Button) */}
@@ -60,4 +60,4 @@ const CustomAppBar = (props) => {
     );
 };
 
-export default CustomAppBar;
+export default StudentAppBar;
