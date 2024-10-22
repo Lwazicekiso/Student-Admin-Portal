@@ -2,15 +2,18 @@
 
 /* AppBar Styles */
 .admin-app-bar {
-    background-color: #124461;
-    height: 200px;
+    height: 100px;
     margin-bottom: 103px;
+    background: linear-gradient(to bottom, #2C6485, #0A171F)
 }
+
+
 
 .toolbar {
     min-height: 100px;
     justify-content: space-between;
     position: relative;
+    
 }
 
 .logo-section {
@@ -47,22 +50,20 @@
 
 /* Sidebar Styles */
 .sidebar {
-    width: 260px;
+    width: 240px;
     margin-top: 200px;
-    height: 100vh;
-    background-color: #194D6C;
+    height: relative;
     position: fixed; /* Keep it fixed on the screen */
     top: 0; /* Start from the top */
     left: 0; /* Align it to the left */
     display: flex;
     flex-direction: column; /* Arrange menu items vertically */
-    padding: 10px;
+    background: linear-gradient(to bottom, #2C6485, #0A171F)
 }
 
 /* Menu Item Styles */
 .menu-item {
     width: 260px; /* Ensure menu items take full width */
-    
     padding: 15px 20px;
     margin-top: 2%; /* Maintain spacing between menu items */
     color: #FFFFFF;

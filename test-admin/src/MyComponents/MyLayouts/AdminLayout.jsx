@@ -29,7 +29,7 @@ export const AdminAppBar = (props) => {
                 {/* Logo and Title Section */}
                 <Box className="logo-section">
                     <img src="src/images/Cape_college_logo.png" alt="Logo" className="logo-image" />
-                    <Typography variant="h5" className="title-text">
+                    <Typography variant="h" className="title-text">
                         Cape College
                     </Typography>
                 </Box>
