@@ -6,8 +6,23 @@ import MyStaff from './MyComponents/MyStaff.jsx';
 import MyStudent from './MyComponents/MyStudent.jsx';
 import ApplicantForm from './MyComponents/ApplicantPage.jsx'
 
+
+
 const App = () => {
   return (
+    
+<MyAdmin/>
+  );
+};
+
+
+
+export default App;
+
+
+const App = () => {
+  return (
+    
     <BrowserRouter> 
       <Routes>
         <Route index path="/" element={<MyLogin/>} />

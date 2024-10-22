@@ -19,6 +19,14 @@ body, html {
   }
 
   /* image effects*/ 
+
+  .my-login-page { /* The unique class added to the div */
+    background-image: url('/workspaces/2024-oi348-group-sandbox-epsilon/test-admin/src/images/homescreen_image.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh; /* Ensure the div covers the viewport height */
+}
   
 .bouncing-image {
     width: 100px; 
@@ -30,10 +38,6 @@ body, html {
   transform: translateY(-10px); /* Move the image up by 10px */
 }
 
-  .image {
-    width: 150px; 
-    height: auto;
-  }
   
   body {
     background-image: url('/workspaces/2024-oi348-group-sandbox-epsilon/test-admin/src/images/homescreen_image.jpg');
