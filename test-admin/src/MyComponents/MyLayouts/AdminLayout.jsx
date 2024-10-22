@@ -29,10 +29,15 @@ export const AdminAppBar = (props) => {
                 {/* Logo and Title Section */}
                 <Box className="logo-section">
                     <img src="src/images/Cape_college_logo.png" alt="Logo" className="logo-image" />
-                    <Typography variant="h" className="title-text">
-                        Cape College
-                    </Typography>
+
+                <Box className="text-container">
+                 <div className="C">C</div>
+                <div className="ape">ape</div> 
+                 <div className="C_2">C</div>
+                 <div className="ollege">ollege</div>
                 </Box>
+            </Box>
+            
 
                 {/* Center Title (Administrator) */}
                 <Typography variant="h6" className="admin-title">
@@ -47,6 +52,7 @@ export const AdminAppBar = (props) => {
                         sx={{ ml: 1 }}
                         onClick={() => handleLogout(navigate)}
                     >
+                        
                         Log out
                     </Button>
                 </Box>

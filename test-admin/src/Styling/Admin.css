@@ -2,10 +2,93 @@
 
 /* AppBar Styles */
 .admin-app-bar {
-    height: 100px;
+    height: 120px;
     margin-bottom: 103px;
-    background: linear-gradient(to bottom, #2C6485, #0A171F)
+    background: linear-gradient(to bottom, #2C6485, #0A171F);
 }
+
+.text-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align the text to the left */
+    height: 60px; /* Reduce height to fit in the AppBar */
+    margin-left: 10px; /* Optional: Adjust margin to fit */
+    
+}
+
+/*Cape College structure*/
+
+.C {
+    position: absolute;
+width: 99px;
+height: 122px;
+left: 33px;
+top: 4px;
+
+font-family: 'Dynalight';
+font-style: normal;
+font-weight: 400;
+font-size: 100px;
+line-height: 135px;
+
+color: #FFFFFF;
+}
+
+.ape {
+    position: absolute;
+    width: 93px;
+    height: 40px;
+    left: 89px;
+    top: 53px;
+    
+    font-family: 'Dynalight';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 41px;
+    
+    color: #FFFFFF;
+}
+
+.C_2 {
+    position: absolute;
+    width: 99px;
+    height: 122px;
+    left: 137px;
+    top: 4px;
+
+    font-family: 'Dynalight';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 100px;
+    line-height: 135px;
+
+color: #FFFFFF;
+}
+
+.ollege {
+    position: absolute;
+    width: 168px;
+    height: 39px;
+    left: 189px;
+    top: 50px;
+    
+    font-family: 'Dynalight';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 41px;
+    
+    color: #FFFFFF;
+}
+
+.text-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2px; 
+}
+
 
 
 
@@ -18,29 +101,60 @@
 
 .logo-section {
     display: flex;
-    align-items: center;
+    align-items: center; 
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+    gap: 10px; /
+}
+
+
+/* Image Styles */
+.logo-image {
+    height: 40px; 
+    width: auto; /* Maintain aspect ratio */
 }
 
 .logo-image {
     height: 40px;
+    width: auto;
     margin-right: 16px;
+    position: absolute;
+    left: 15.71%;
+    right: 78.26%;
+    top: 40.23%;
+    bottom: -10%;
 }
+
+
+
 
 .title-text {
     font-weight: bold;
     color: #FFFFFF;
 }
 
+
+
 .admin-title {
-    color: #FFFFFF;
-    font-family: 'Times New Roman';
-    font-size: 45px;
-    text-align: center;
     position: absolute;
+    width: auto;
+    height: 70px;
     left: 50%;
     transform: translateX(-50%);
-    top: 50%;
+    top: 26px;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 51px;
+    line-height: 70px;
+    letter-spacing: 0.1em;
+
+    color: #F8F8F8;
+    z-index: 10;
 }
+
 
 /* User Section */
 .avatar {
@@ -48,59 +162,89 @@
     color: #194D6C;
 }
 
+.user-section {
+    position: absolute;
+    left: 92.16%;
+    right: 4.57%;
+    top: 7.42%;
+    bottom: 86.82%;
+    display: flex;
+    align-items: center;
+    background: #F8F8F8;
+}
+
 /* Sidebar Styles */
 .sidebar {
     width: 240px;
     margin-top: 200px;
     height: relative;
-    position: fixed; /* Keep it fixed on the screen */
-    top: 0; /* Start from the top */
-    left: 0; /* Align it to the left */
+    position: fixed; 
+    top: 0; 
+    left: 0; 
     display: flex;
-    flex-direction: column; /* Arrange menu items vertically */
+    flex-direction: column; 
     background: linear-gradient(to bottom, #2C6485, #0A171F)
 }
 
+/* Sidebar Styles */
+.sidebar {
+    width: 260px;
+    margin-top: 200px; 
+    height: calc(100vh - 100px); 
+    background-color: #194D6C;
+    position: fixed; /* Keep it fixed on the screen */
+    top: 100px; /* Move the sidebar down from the top by 100px (adjust as needed) */
+    left: 0; /* Align it to the left */
+    display: flex;
+    flex-direction: column; /* Arrange menu items vertically */
+    padding: 10px;
+}
+
+
 /* Menu Item Styles */
+/* Menu Item Default State */
 .menu-item {
-    width: 260px; /* Ensure menu items take full width */
+    width: 260px; 
     padding: 15px 20px;
-    margin-top: 2%; /* Maintain spacing between menu items */
-    color: #FFFFFF;
-    height:18%;
+    margin-top: 2%; 
+    color: #194D6C;
+    height: 18%;
     margin-left: 0%;
-    padding-left:20%;
-    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
-    display: flex; /* Align icon and text */
-    align-items: center; /* Center items vertically */
-    border-radius: 5px; /* Rounded corners for a softer look */
+    padding-left: 20%;
+    transition: background-color 0.3s, color 0.3s; 
+    display: flex; /
+    align-items: center;
+    border-radius: 5px; 
+    font-size: 30px; 
+    line-height: 1.5; 
 }
 
-.menu-item:hover {
-    background-color: #FFFFFF;
-    color: #194D6C;
-}
-
-/* Change icon color when hovering */
-.menu-item:hover .menu-icon {
-    color: #194D6C;
-}
-
-/* Active Menu Item */
-.menu-item-active {
-    background-color: #FFFFFF;
-    color: #194D6C;
-}
-
-.menu-item-active .MuiSvgIcon-root {
-    color: #194D6C;
-}
-
+/* Default Icon Color */
 .menu-icon {
-    color: #FFFFFF;
-    margin-right: 10px; /* Add some space between icon and text */
+    color: #194D6C; 
+    margin-right: 10px; 
+    font-size: 30px; 
 }
 
-.menu-icon-active {
-    color: #194D6C;
+/* Hover effect for larger icon and white text */
+.menu-item:hover {
+    font-size: 32px;
+    color: #FFFFFF; /* Text turns white on hover */
+    background-color: #194D6C; /* Change background color on hover */
+}
+
+.menu-item:hover .menu-icon {
+    color: #FFFFFF; /* Icon turns white on hover */
+    font-size: 32px; /* Increase icon size on hover */
+}
+
+/* Active Menu Item (When selected) */
+.menu-item:hover {
+    font-size: 20px; 
+    color: #FFFFFF; 
+}
+
+.menu-item:hover .menu-icon {
+    color: #FFFFFF; 
+    font-size: 24px; 
 }

@@ -1,0 +1,106 @@
+/* C */
+
+position: absolute;
+width: 99px;
+height: 122px;
+left: 33px;
+top: 4px;
+
+font-family: 'Dynalight';
+font-style: normal;
+font-weight: 400;
+font-size: 111px;
+line-height: 135px;
+
+color: #FFFFFF;
+
+
+
+/* C */
+
+position: absolute;
+width: 99px;
+height: 122px;
+left: 137px;
+top: 4px;
+
+font-family: 'Dynalight';
+font-style: normal;
+font-weight: 400;
+font-size: 111px;
+line-height: 135px;
+
+color: #FFFFFF;
+
+
+
+/* ape */
+position: absolute;
+width: 93px;
+height: 40px;
+left: 89px;
+top: 53px;
+
+font-family: 'Dynalight';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 41px;
+
+color: #FFFFFF;
+
+
+
+/* ollege */
+
+position: absolute;
+width: 168px;
+height: 39px;
+left: 189px;
+top: 50px;
+
+font-family: 'Dynalight';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 41px;
+
+color: #FFFFFF;
+
+/* Vector */
+
+position: absolute;
+left: 27.29%;
+right: 68.68%;
+top: 2.54%;
+bottom: 91.7%;
+
+background: #F8F8F8;
+
+/* Administrator */
+
+position: absolute;
+width: 385px;
+height: 70px;
+left: 620px;
+top: 26px;
+
+font-family: 'DM Serif Text';
+font-style: normal;
+font-weight: 400;
+font-size: 51px;
+line-height: 70px;
+/* identical to box height */
+letter-spacing: 0.1em;
+
+color: #F8F8F8;
+
+/* Vector */
+
+position: absolute;
+left: 92.16%;
+right: 4.57%;
+top: 7.42%;
+bottom: 86.82%;
+
+background: #F8F8F8;
