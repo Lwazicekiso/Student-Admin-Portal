@@ -634,6 +634,11 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.19.2.tgz#0c896535473291cb41f152c180bedd5680a3b273"
   integrity sha512-baiMx18+IMuD1yyvOGaHM9QrVUPGGG0jC+z+IPHnRJWUAUvaKuWKyE8gjDj2rzv3sz9zOGoRSPgeBVHRhZnBlA==
 
+"@remix-run/router@1.20.0":
+  version "1.20.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.20.0.tgz#03554155b45d8b529adf635b2f6ad1165d70d8b4"
+  integrity sha512-mUnk8rPJBI9loFDZ+YzPGdeniYK+FTmRD1TMCz7ev2SNIozyKKpnGgsxO34u6Z4z/t0ITuu7voi/AshfsGsgFg==
+
 "@rollup/rollup-android-arm-eabi@4.24.0":
   version "4.24.0"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.24.0.tgz#1661ff5ea9beb362795304cb916049aba7ac9c54"
@@ -2025,11 +2030,6 @@ hoist-non-react-statics@^3.3.1:
   dependencies:
     react-is "^16.7.0"
 
-hotscript@^1.0.12:
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/hotscript/-/hotscript-1.0.13.tgz#6eb5de757e9b33444ffc22555e98dbc17fa31fb4"
-  integrity sha512-C++tTF1GqkGYecL+2S1wJTfoH6APGAsbb7PAWQ3iVIwgG/EFseAfEVOKFgAFq4yK3+6j1EjUD4UQ9dRJHX/sSQ==
-
 html-encoding-sniffer@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/html-encoding-sniffer/-/html-encoding-sniffer-4.0.0.tgz#696df529a7cfd82446369dc5193e590a3735b448"
@@ -2717,16 +2717,15 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-ra-core@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/ra-core/-/ra-core-5.2.2.tgz#3e33a62ffcbfa0df756751d942776d0e8ffff395"
-  integrity sha512-X2wZ5cg+TYDCuyO0aFAhvg+aqxb2/xQzxCuTnC3HR+9hCYXjckwjQAs3yjJwkdLLrOAS+w8/aiKMy5tZPbh95Q==
+ra-core@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/ra-core/-/ra-core-5.3.0.tgz#02ce7e7c5d7617dbb2b2805803fde1d0c88dc4bd"
+  integrity sha512-e5Y0u+P+0Kx2XeYEAUDV63NdlAvMtlrb4ndYLtIbCaIeOx1o6GXlD2BedICaYSb6XXjz+KoNZ1nmWuZ6tS4f7Q==
   dependencies:
     "@tanstack/react-query" "^5.8.4"
     clsx "^2.1.1"
     date-fns "^3.6.0"
     eventemitter3 "^5.0.1"
-    hotscript "^1.0.12"
     inflection "^3.0.0"
     jsonexport "^3.2.0"
     lodash "~4.17.5"
@@ -2741,32 +2740,31 @@ ra-data-fakerest@^5.2.2:
   dependencies:
     fakerest "^4.0.1"
 
-ra-i18n-polyglot@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/ra-i18n-polyglot/-/ra-i18n-polyglot-5.2.2.tgz#d5763baf35fd5ee1a519c642a3ff573ad945e51a"
-  integrity sha512-D9elwYgelAVw5cnAsNyhUHMr+Y0N0+4yDx7vSR78bxzll07C95Tw0ZruFIp5Wa4vTPmvnKpX+yiwiJ/TqU88rg==
+ra-i18n-polyglot@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/ra-i18n-polyglot/-/ra-i18n-polyglot-5.3.0.tgz#ed10be1e3133b3e4a42990d045646ef336faf1ce"
+  integrity sha512-Dc2m6MlpF1qHeqH5iJukd7t6oVxnqC/k8AY+HEYQCXCTHhVWkzHDjLOilcKHbgiY6st1p6KoCL93CP8lyEjaqg==
   dependencies:
     node-polyglot "^2.2.2"
-    ra-core "^5.2.2"
+    ra-core "^5.3.0"
 
-ra-language-english@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/ra-language-english/-/ra-language-english-5.2.2.tgz#01d1f8a8e5f55197ef11b1d31670c3b15962e59c"
-  integrity sha512-dbCAv5ELaCWmh2raf6VIWWuQK3Z+IQ3jrlatgdipjTse57I0zu7Rp5WwlOdYfWRk6pA3WsMvHHrkuZNEWroDyg==
+ra-language-english@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/ra-language-english/-/ra-language-english-5.3.0.tgz#f2811d9c72513c18ff0f48498bfa92f97911b4ad"
+  integrity sha512-Gp8dt4annXcxFd7BJ/EgngLmI74A25++iwE5lS8WqD6yBL3byU5Xwu9+CQ8YQkU9+cQEFhLhkWIGfXXczxSymw==
   dependencies:
-    ra-core "^5.2.2"
+    ra-core "^5.3.0"
 
-ra-ui-materialui@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/ra-ui-materialui/-/ra-ui-materialui-5.2.2.tgz#6f7463a1971045caeb53ce4f8b0763cad6aba7e8"
-  integrity sha512-RpMKa9C+VLeH8fDLHJ4jVZv6eYPsqBqO+D3NpC6vYI9dkFfX62E74UqVEOI98/IADURNxeG2cuSVBrwS+gtZKg==
+ra-ui-materialui@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/ra-ui-materialui/-/ra-ui-materialui-5.3.0.tgz#14b1c35f98a4d133dd0ef6be85191de71da88bb2"
+  integrity sha512-jmEqI77LDcEbhrMC45QM1YmUMSOwzNH8dEjr9A/Xm+UW+YnzOFDkVJJumfP3jpFL4wviX48Qy5mBi54t19CYjw==
   dependencies:
     "@tanstack/react-query" "^5.8.4"
     autosuggest-highlight "^3.1.1"
     clsx "^2.1.1"
     css-mediaquery "^0.1.2"
     dompurify "^2.4.3"
-    hotscript "^1.0.12"
     inflection "^3.0.0"
     jsonexport "^3.2.0"
     lodash "~4.17.5"
@@ -2775,19 +2773,19 @@ ra-ui-materialui@^5.2.2:
     react-error-boundary "^4.0.13"
     react-transition-group "^4.4.5"
 
-react-admin@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/react-admin/-/react-admin-5.2.2.tgz#5df06edfd0e94cf7716b16db71e6573af6e0ccd9"
-  integrity sha512-fYsfLAGNo7wf3zlLUS2k+/3uxPdz68lwuyAGLnnHjHR55e0uGvj1m6BrM/ma/YhTmUjpvetNLbWBQj8GZWWjrw==
+react-admin@^5.2.3:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/react-admin/-/react-admin-5.3.0.tgz#c94dce0e96b949717e3c79df03b7cba133949ba1"
+  integrity sha512-86M0c76ClN7mbMsONLY83lV32hAQREH1hnhHXANZPS4BnRSKSyFjI93Wke+TwUkWlYiqXlEwaYzISfDTTU3xqA==
   dependencies:
     "@emotion/react" "^11.4.1"
     "@emotion/styled" "^11.3.0"
     "@mui/icons-material" "^5.15.20"
     "@mui/material" "^5.15.20"
-    ra-core "^5.2.2"
-    ra-i18n-polyglot "^5.2.2"
-    ra-language-english "^5.2.2"
-    ra-ui-materialui "^5.2.2"
+    ra-core "^5.3.0"
+    ra-i18n-polyglot "^5.3.0"
+    ra-language-english "^5.3.0"
+    ra-ui-materialui "^5.3.0"
     react-hook-form "^7.53.0"
     react-router "^6.22.0"
     react-router-dom "^6.22.0"
@@ -2844,12 +2842,27 @@ react-router-dom@^6.22.0:
     "@remix-run/router" "1.19.2"
     react-router "6.26.2"
 
+react-router-dom@^6.27.0:
+  version "6.27.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.27.0.tgz#8d7972a425fd75f91c1e1ff67e47240c5752dc3f"
+  integrity sha512-+bvtFWMC0DgAFrfKXKG9Fc+BcXWRUO1aJIihbB79xaeq0v5UzfvnM5houGUm1Y461WVRcgAQ+Clh5rdb1eCx4g==
+  dependencies:
+    "@remix-run/router" "1.20.0"
+    react-router "6.27.0"
+
 react-router@6.26.2, react-router@^6.22.0:
   version "6.26.2"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.26.2.tgz#2f0a68999168954431cdc29dd36cec3b6fa44a7e"
   integrity sha512-tvN1iuT03kHgOFnLPfLJ8V95eijteveqdOSk+srqfePtQvqCExB8eHOYnlilbOcyJyKnYkr1vJvf7YqotAJu1A==
   dependencies:
     "@remix-run/router" "1.19.2"
+
+react-router@6.27.0:
+  version "6.27.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.27.0.tgz#db292474926c814c996c0ff3ef0162d1f9f60ed4"
+  integrity sha512-YA+HGZXz4jaAkVoYBE98VQl+nVzI+cVI2Oj/06F5ZM+0u3TgedN9Y9kmMRo2mnkSK2nCpNQn0DVob4HCsY/WLw==
+  dependencies:
+    "@remix-run/router" "1.20.0"
 
 react-transition-group@^4.4.5:
   version "4.4.5"

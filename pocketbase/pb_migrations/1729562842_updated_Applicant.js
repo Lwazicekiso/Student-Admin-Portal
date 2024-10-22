@@ -1,0 +1,36 @@
+/// <reference path="../pb_data/types.d.ts" />
+migrate((db) => {
+  const dao = new Dao(db)
+  const collection = dao.findCollectionByNameOrId("ty9dwkfk5dtna80")
+
+  // update
+  collection.schema.addField(new SchemaField({
+    "system": false,
+    "id": "zukf4lhn",
+    "name": "status",
+    "type": "bool",
+    "required": true,
+    "presentable": false,
+    "unique": false,
+    "options": {}
+  }))
+
+  return dao.saveCollection(collection)
+}, (db) => {
+  const dao = new Dao(db)
+  const collection = dao.findCollectionByNameOrId("ty9dwkfk5dtna80")
+
+  // update
+  collection.schema.addField(new SchemaField({
+    "system": false,
+    "id": "zukf4lhn",
+    "name": "Acceptance",
+    "type": "bool",
+    "required": true,
+    "presentable": false,
+    "unique": false,
+    "options": {}
+  }))
+
+  return dao.saveCollection(collection)
+})

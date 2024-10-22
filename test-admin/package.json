@@ -14,7 +14,8 @@
     "ra-data-fakerest": "^5.2.2",
     "react": "^18.3.1",
     "react-admin": "^5.2.3",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
