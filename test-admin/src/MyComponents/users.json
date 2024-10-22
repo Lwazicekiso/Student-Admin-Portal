@@ -1,0 +1,225 @@
+[
+    {
+        "college_id": "cape0001",
+        "name": "John",
+        "surname": "Doe",
+        "email": "john.doe@example.com",
+        "avatar": "",
+        "phone": "0123456780",
+        "identity_no": "1234567890123",
+        "address": "101 Oak Street, Springfield",
+        "role": "lecturer"
+    },
+    {
+        "college_id": "cape0002",
+        "name": "Jane",
+        "surname": "Smith",
+        "email": "jane.smith@example.com",
+        "avatar": "",
+        "phone": "0123456781",
+        "identity_no": "1234567890124",
+        "address": "202 Pine Avenue, Springfield",
+        "role": "lecturer"
+    },
+    {
+        "college_id": "cape0003",
+        "name": "Emily",
+        "surname": "Johnson",
+        "email": "emily.johnson@example.com",
+        "avatar": "",
+        "phone": "0123456782",
+        "identity_no": "1234567890125",
+        "address": "303 Birch Lane, Springfield",
+        "role": "lecturer"
+    },
+    {
+        "college_id": "cape0004",
+        "name": "Michael",
+        "surname": "Brown",
+        "email": "michael.brown@example.com",
+        "avatar": "",
+        "phone": "0123456783",
+        "identity_no": "1234567890126",
+        "address": "404 Cedar Boulevard, Springfield",
+        "role": "admin"
+    },
+    {
+        "college_id": "cape0005",
+        "name": "Sarah",
+        "surname": "Davis",
+        "email": "sarah.davis@example.com",
+        "avatar": "",
+        "phone": "0123456784",
+        "identity_no": "1234567890127",
+        "address": "505 Maple Drive, Springfield",
+        "role": "admin"
+    },
+    {
+        "college_id": "cape0006",
+        "name": "David",
+        "surname": "Miller",
+        "email": "david.miller@example.com",
+        "avatar": "",
+        "phone": "0123456785",
+        "identity_no": "1234567890128",
+        "address": "606 Elm Street, Springfield",
+        "role": "admin"
+    },
+    {
+        "college_id": "cape0007",
+        "name": "Laura",
+        "surname": "Wilson",
+        "email": "laura.wilson@example.com",
+        "avatar": "",
+        "phone": "0123456786",
+        "identity_no": "1234567890129",
+        "address": "707 Cherry Way, Springfield",
+        "role": "lecturer"
+    },
+    {
+        "college_id": "cape0008",
+        "name": "James",
+        "surname": "Taylor",
+        "email": "james.taylor@example.com",
+        "avatar": "",
+        "phone": "0123456787",
+        "identity_no": "1234567890130",
+        "address": "808 Walnut Circle, Springfield",
+        "role": "lecturer"
+    },
+    {
+        "college_id": "cape0009",
+        "name": "Jessica",
+        "surname": "Anderson",
+        "email": "jessica.anderson@example.com",
+        "avatar": "",
+        "phone": "0123456788",
+        "identity_no": "1234567890131",
+        "address": "909 Ash Road, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0010",
+        "name": "Robert",
+        "surname": "Thomas",
+        "email": "robert.thomas@example.com",
+        "avatar": "",
+        "phone": "0123456789",
+        "identity_no": "1234567890132",
+        "address": "1001 Spruce Path, Springfield",
+        "role": "lecturer"
+    },
+    {
+        "college_id": "cape0011",
+        "name": "Olivia",
+        "surname": "Martinez",
+        "email": "olivia.martinez@example.com",
+        "avatar": "",
+        "phone": "0123456790",
+        "identity_no": "1234567890133",
+        "address": "1101 Magnolia Avenue, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0012",
+        "name": "Ethan",
+        "surname": "Garcia",
+        "email": "ethan.garcia@example.com",
+        "avatar": "",
+        "phone": "0123456791",
+        "identity_no": "1234567890134",
+        "address": "1201 Cypress Lane, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0013",
+        "name": "Sophia",
+        "surname": "Lopez",
+        "email": "sophia.lopez@example.com",
+        "avatar": "",
+        "phone": "0123456792",
+        "identity_no": "1234567890135",
+        "address": "1301 Palm Drive, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0014",
+        "name": "Liam",
+        "surname": "Hernandez",
+        "email": "liam.hernandez@example.com",
+        "avatar": "",
+        "phone": "0123456793",
+        "identity_no": "1234567890136",
+        "address": "1401 Fig Street, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0015",
+        "name": "Isabella",
+        "surname": "Young",
+        "email": "isabella.young@example.com",
+        "avatar": "",
+        "phone": "0123456794",
+        "identity_no": "1234567890137",
+        "address": "1501 Peach Avenue, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0016",
+        "name": "Mason",
+        "surname": "Allen",
+        "email": "mason.allen@example.com",
+        "avatar": "",
+        "phone": "0123456795",
+        "identity_no": "1234567890138",
+        "address": "1601 Banana Boulevard, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0017",
+        "name": "Ava",
+        "surname": "Sanchez",
+        "email": "ava.sanchez@example.com",
+        "avatar": "",
+        "phone": "0123456796",
+        "identity_no": "1234567890139",
+        "address": "1701 Kiwi Way, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0018",
+        "name": "Noah",
+        "surname": "Scott",
+        "email": "noah.scott@example.com",
+        "avatar": "",
+        "phone": "0123456797",
+        "identity_no": "1234567890140",
+        "address": "1801 Blueberry Drive, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0019",
+        "name": "Mia",
+        "surname": "Green",
+        "email": "mia.green@example.com",
+        "avatar": "",
+        "phone": "0123456798",
+        "identity_no": "1234567890141",
+        "address": "1901 Strawberry Lane, Springfield",
+        "role": "candidate"
+    },
+    {
+        "college_id": "cape0020",
+        "name": "Logan",
+        "surname": "Baker",
+        "email": "logan.baker@example.com",
+        "avatar": "",
+        "phone": "0123456799",
+        "identity_no": "1234567890142",
+        "address": "2001 Raspberry Road, Springfield",
+        "role": "candidate"
+    }
+]
+
+
+
