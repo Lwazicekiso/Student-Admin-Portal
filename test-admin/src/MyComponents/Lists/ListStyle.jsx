@@ -1,4 +1,4 @@
-
+/* style for grids*/
 
 export const dataGridStyle = {                        
     '& .RaDatagrid-headerCell': {

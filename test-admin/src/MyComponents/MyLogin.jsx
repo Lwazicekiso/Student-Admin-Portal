@@ -9,16 +9,15 @@ import '../Styling/MyLogin.css';
 const MyLogin = () => {
 
     return(
-        <div className="my-login-page"> {/* Unique class for the background image*/}
-            <div className="role-symbol-container">
-                <div style={{ textAlign: 'center' }}>
-                    <Link to="/admin">
-                        <img src="src/images/admin_symbol.jpg" alt="admin" className="image" />
-                    </Link>
-                    <p>Admin</p>
-                </div>
+        <div className="my-login-page">
+        <div className="role-symbol-container">
+            <div style={{ textAlign: 'center' }}>
+                <Link to="/admin">
+                    <img src="src/images/admin_symbol.jpg" alt="admin" className="bouncing-image" />
+                </Link>
+                <p>Admin</p>
+            </div>
 
-    
            
 
             <div style={{ textAlign: 'center' }}>

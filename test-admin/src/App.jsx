@@ -18,3 +18,26 @@ const App = () => {
 
 
 export default App;
+<<<<<<< HEAD
+=======
+
+
+
+/*
+const App = () => {
+  return (
+    
+    <BrowserRouter> 
+      <Routes>
+        <Route index path="/" element={<MyLogin/>} />
+        <Route path="/admin" element={<MyAdmin/>} />
+        <Route path="/staff" element={<MyStaff/>} />
+        <Route path="/student" element={<MyStudent/>} />
+        <Route path="/applicant" element={<ApplicantForm/>} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default App; */
+>>>>>>> 3bdf95c08bf04abcb8b47c637ba4c7ea71075268
