@@ -5,19 +5,141 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Dynalight', sans-serif;
   }
   
   .role-symbol-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full page height */
-    gap: 20px; /* Space between images */
+    justify-content: last baseline;
+    align-items: last baseline;
+    height: 100vh; 
+    gap: 60px;
+    flex-direction: row;
+    min-height: 100vh; 
   }
+
+  /* image effects*/ 
   
+.bouncing-image {
+    width: 100px; 
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.bouncing-image:hover {
+  transform: translateY(-10px); /* Move the image up by 10px */
+}
+
   .image {
-    width: 150px; /* Adjust size of images */
+    width: 150px; 
     height: auto;
   }
   
+  body {
+    background-image: url('/workspaces/2024-oi348-group-sandbox-epsilon/test-admin/src/images/homescreen_image.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+  }
+
+  .body {
+    position: absolute;
+    left: 59.67%;
+    right: 23.02%;
+    top: 60.57%;
+    bottom: 13.68%;
+    background: url('./images/icon.svg') no-repeat center; /* Adjust the path as needed */
+    background-size: cover; /* Adjust this based on how you want to display the SVG */
+}
+
+
+/*Cape College*/
+
+.ollege {
+  position: absolute;
+  width: 168px; 
+  height: 52px; 
+  left: 167px; 
+  top: 203px; 
+
+  font-family: 'Dynalight'; 
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 73px;
+
+  color: #FFFFFF; 
+}
+
+.C {
+  position: absolute;
+  width: 99px;
+  height: 160px;
+  left: 44px;
+  top: 0px;
+
+  font-family: 'Dynalight';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 150px;
+  line-height: 182px;
+
+  color: #FFFFFF;
+}
+
+.ape {
+  position: absolute;
+  width: 93px;
+  height: 52px;
+  left: 124px;
+  top: 58px;
+
+  font-family: 'Dynalight';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 73px;
+
+  color: #FFFFFF;
+}
+
+.C_2 {
+  position: absolute;
+    width: 99px;
+    height: 160px;
+    left: 93px;
+    top: 139px;
+
+    font-family: 'Dynalight';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 150px;
+    line-height: 182px;
+
+    color: #FFFFFF;
+}
+
+p {
+   font-family: 'Times New Roman', Times, serif;
+   line-height: normal;
+
+   color: #FFFFFF;
+
+
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+
+letter-spacing: 0.03em;
+
+}
+
+
+
+/* Apllicant placement*/ 
+.applicant-container {
+  position: absolute; /* Positioning the applicant section absolutely */
+  
+  right: 10px; /* Adjust as needed for horizontal position */
+  text-align: center; /* Center the text for applicant */
+}

@@ -237,6 +237,7 @@ const PersonalInfo = () => (
             validate={[required('Date of birth is required.')]} // Custom error message
             helperText="Enter your date of birth in YYYY-MM-DD format."
         />
+        
         <TextInput
             source="nationalId"
             label="Identity Number"
