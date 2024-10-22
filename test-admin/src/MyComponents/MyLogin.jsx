@@ -50,6 +50,7 @@ const MyLogin = () => {
             <div className="ollege">ollege</div>
             
         </div>
+        </div>
     );
 };
 
