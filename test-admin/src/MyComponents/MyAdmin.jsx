@@ -15,11 +15,10 @@ const MyAdmin = () => {
     return (
         <Admin 
         dataProvider={dataProvider}
-        authProvider={authProvider}
         layout={AdminLayout}>
             
             <Resource
-                name="Students"
+                name="Students_old"
                 list={StudentList}
                 edit={StudentEdit}
                 show={StudentShow}

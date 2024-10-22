@@ -1,0 +1,105 @@
+/* Admin.css */
+
+/* AppBar Styles */
+.admin-app-bar {
+    background-color: #124461;
+    height: 200px;
+    margin-bottom: 103px;
+}
+
+.toolbar {
+    min-height: 100px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 40px;
+    margin-right: 16px;
+}
+
+.title-text {
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.admin-title {
+    color: #FFFFFF;
+    font-family: 'Times New Roman';
+    font-size: 45px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+}
+
+/* User Section */
+.avatar {
+    background-color: #FFFFFF;
+    color: #194D6C;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 260px;
+    margin-top: 200px;
+    height: 100vh;
+    background-color: #194D6C;
+    position: fixed; /* Keep it fixed on the screen */
+    top: 0; /* Start from the top */
+    left: 0; /* Align it to the left */
+    display: flex;
+    flex-direction: column; /* Arrange menu items vertically */
+    padding: 10px;
+}
+
+/* Menu Item Styles */
+.menu-item {
+    width: 260px; /* Ensure menu items take full width */
+    
+    padding: 15px 20px;
+    margin-top: 2%; /* Maintain spacing between menu items */
+    color: #FFFFFF;
+    height:18%;
+    margin-left: 0%;
+    padding-left:20%;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    display: flex; /* Align icon and text */
+    align-items: center; /* Center items vertically */
+    border-radius: 5px; /* Rounded corners for a softer look */
+}
+
+.menu-item:hover {
+    background-color: #FFFFFF;
+    color: #194D6C;
+}
+
+/* Change icon color when hovering */
+.menu-item:hover .menu-icon {
+    color: #194D6C;
+}
+
+/* Active Menu Item */
+.menu-item-active {
+    background-color: #FFFFFF;
+    color: #194D6C;
+}
+
+.menu-item-active .MuiSvgIcon-root {
+    color: #194D6C;
+}
+
+.menu-icon {
+    color: #FFFFFF;
+    margin-right: 10px; /* Add some space between icon and text */
+}
+
+.menu-icon-active {
+    color: #194D6C;
+}
