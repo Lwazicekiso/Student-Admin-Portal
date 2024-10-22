@@ -7,7 +7,7 @@ import MyStudent from './MyComponents/MyStudent.jsx';
 import ApplicantForm from './MyComponents/ApplicantPage.jsx'
 
 
-
+/*
 const App = () => {
   return (
     
@@ -18,7 +18,7 @@ const App = () => {
 
 
 export default App;
-
+*/
 
 const App = () => {
   return (
