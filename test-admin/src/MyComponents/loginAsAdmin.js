@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://127.0.0.1:8090'); 
+const pb = new PocketBase('https://cuddly-succotash-7gww6w9vpg6cq4-8090.app.github.dev'); 
 
 
 export default async function loginAsAdmin() {

@@ -6,7 +6,7 @@ import AdminLayout from "./MyLayouts/AdminLayout";
 import {PocketBaseProvider} from '../ra-pocketbase';
 
 
-const apiUrl = 'https://organic-orbit-jx99v95jj6g2j6x7-8090.app.github.dev'; 
+const apiUrl = 'https://cuddly-succotash-7gww6w9vpg6cq4-8090.app.github.dev'; 
 
 export const dataProvider = PocketBaseProvider(apiUrl).dataProvider;
 export const authProvider = PocketBaseProvider(apiUrl).authProvider;
@@ -15,6 +15,7 @@ const MyAdmin = () => {
     return (
         <Admin 
         dataProvider={dataProvider}
+        authProvider={authProvider}
         layout={AdminLayout}>
             
             <Resource
