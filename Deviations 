@@ -1,7 +1,0 @@
-- Application screen 
- 1 using images as links as this was easier than trying to make a vector a 
-    link 
-
-- Administration screen 
-   1. removed the search bar, realized it was useless and served no real purpose 
-   2. removed the top tabbed section, realized theyre redundant 
