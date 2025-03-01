@@ -1,3 +1,3 @@
 
 # Student-Admin-Portal
-Cape College admin
+Cape College admi
