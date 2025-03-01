@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "pocketbase": "^0.21.5",
+    "pocketbase": "^0.25.2",
+    "react": "^19.0.0",
+    "react-admin": "^5.6.2",
     "vite": "^5.4.8"
   }
 }
