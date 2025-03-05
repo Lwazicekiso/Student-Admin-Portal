@@ -72,36 +72,36 @@ export const AdminSideBar = (props) => {
         <Sidebar {...props} className="sidebar">
             {/* Menu item for Students */}
             <MenuItemLink 
-                className={`menu-item ${isActive('/Students_old') ? 'menu-item-active' : ''}`}
-                to="/Students_old" 
+                className={`menu-item ${isActive('/Students') ? 'menu-item-active' : ''}`}
+                to="/Students" 
                 primaryText="Students"
                 leftIcon={
                     <SchoolIcon 
-                        className={`menu-icon ${isActive('/Students_old') ? 'menu-item-active' : ''}`}
+                        className={`menu-icon ${isActive('/Students') ? 'menu-item-active' : ''}`}
                     />
                 }
             />
             
             {/* Menu item for Applicants */}
             <MenuItemLink 
-                className={`menu-item ${isActive('/Applicant') ? 'menu-item-active' : ''}`}
-                to="/Applicant" 
+                className={`menu-item ${isActive('/Applicants') ? 'menu-item-active' : ''}`}
+                to="/Applicants" 
                 primaryText="Applicants"
                 leftIcon={
                     <PersonIcon 
-                        className={`menu-icon ${isActive('/Applicant') ? 'menu-item-active' : ''}`}
+                        className={`menu-icon ${isActive('/Applicants') ? 'menu-item-active' : ''}`}
                     />
                 }
             />
             
             {/* Menu item for Assessments */}
             <MenuItemLink 
-                className={`menu-item ${isActive('/Assessment') ? 'menu-item-active' : ''}`}
-                to="/assessment" 
+                className={`menu-item ${isActive('/Assessments') ? 'menu-item-active' : ''}`}
+                to="/Assessments" 
                 primaryText="Assessments"
                 leftIcon={
                     <AssessmentIcon 
-                        className={`menu-icon ${isActive('/Assessment') ? 'menu-item-active' : ''}`}
+                        className={`menu-icon ${isActive('/Assessments') ? 'menu-item-active' : ''}`}
                     />
                 }
             />
