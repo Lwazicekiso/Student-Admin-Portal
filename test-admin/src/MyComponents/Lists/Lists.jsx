@@ -338,8 +338,8 @@ export const ModuleCreate = (props) => (
                 <SelectInput optionText="Course_Name" />
             </ReferenceInput>
             <TextInput source="Module_Credits" label="Module Credits" />
-            <TextInput source="Module_Code" label="Module Code" />
-            <ReferenceInput label="Lecturer" source="Lecturer_Name" reference="lecturers">
+            <TextInput source="Module_Code" label="Module Code" />s
+            <ReferenceInput label="Lecturer" source="Lecturer_Name" reference="Lecturers">
                 <SelectInput optionText="lecturer_name" />
             </ReferenceInput>
         </SimpleForm>

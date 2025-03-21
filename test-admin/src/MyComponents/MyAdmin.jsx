@@ -1,11 +1,11 @@
 import { 
-    ApplicantList, ApplicantCreate, ApplicantEdit, ApplicantShow,
     AssessmentList, AssessmentCreate, AssessmentEdit, AssessmentShow,
     CourseList, CourseCreate, CourseEdit, CourseShow,
-    LecturerList, LecturerCreate, LecturerEdit, LecturerShow,
     ModuleList, ModuleCreate, ModuleEdit, ModuleShow,
-    StudentList, StudentCreate, StudentEdit, StudentShow
-} from './Lists/StudentsList';
+    StudentList, StudentCreate, StudentEdit, StudentShow,
+    ApplicantList, ApplicantCreate, ApplicantEdit, ApplicantShow,
+    LecturerList, LecturerCreate, LecturerEdit, LecturerShow
+} from './Lists/Lists.jsx';
 import { Admin,Resource} from "react-admin";
 import AdminLayout from "./MyLayouts/AdminLayout";
 import {PocketBaseProvider} from '../ra-pocketbase';
@@ -15,6 +15,7 @@ const apiUrl = 'https://ubiquitous-spork-4jggg9vqpw92q655-8090.app.github.dev';
 
 export const dataProvider = PocketBaseProvider(apiUrl).dataProvider;
 export const authProvider = PocketBaseProvider(apiUrl).authProvider;
+
 
 export const MyAdmin = () => (
     <Admin dataProvider={dataProvider} layout={AdminLayout} >

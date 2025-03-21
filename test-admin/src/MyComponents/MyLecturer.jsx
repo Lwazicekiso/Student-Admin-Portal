@@ -3,7 +3,7 @@ import {
     CourseList, CourseCreate, CourseEdit, CourseShow,
     ModuleList, ModuleCreate, ModuleEdit, ModuleShow,
     StudentList, StudentCreate, StudentEdit, StudentShow
-} from './Lists/StudentsList';
+} from './Lists/Lists.jsx';
 import { Admin,Resource} from "react-admin";
 import LecturerLayout from "./MyLayouts/LecturerLayout.jsx";
 import {PocketBaseProvider} from '../ra-pocketbase';
