@@ -7,22 +7,23 @@ import {
     ModuleList, ModuleCreate, ModuleEdit, ModuleShow,
 } from './Lists/StudentsList';
 
-const apiUrl = 'http://127.0.0.1:8090'; 
+const apiUrl = 'https://ubiquitous-spork-4jggg9vqpw92q655-8090.app.github.dev'; 
 
 export const dataProvider = PocketBaseProvider(apiUrl).dataProvider;
 export const authProvider = PocketBaseProvider(apiUrl).authProvider;
+
 const MyStudent = () => {
     return (
         <Admin 
         dataProvider={dataProvider}
-        authProvider={authProvider}
+//        authProvider={authProvider}
         layout={StudentLayout}>
             <Resource name="Assessments" list={AssessmentList} edit={AssessmentEdit} show={AssessmentShow}
                 create={AssessmentCreate}
             />
-                <Resource name="assessments" list={AssessmentList} create={AssessmentCreate} edit={AssessmentEdit} show={AssessmentShow} />
-                <Resource name="course" list={CourseList} create={CourseCreate} edit={CourseEdit} show={CourseShow} />
-                <Resource name="modules" list={ModuleList} create={ModuleCreate} edit={ModuleEdit} show={ModuleShow} />
+                <Resource name="Assessments" list={AssessmentList} create={AssessmentCreate} edit={AssessmentEdit} show={AssessmentShow} />
+                <Resource name="Course" list={CourseList} create={CourseCreate} edit={CourseEdit} show={CourseShow} />
+                <Resource name="Modules" list={ModuleList} create={ModuleCreate} edit={ModuleEdit} show={ModuleShow} />
         
         </Admin>
     );

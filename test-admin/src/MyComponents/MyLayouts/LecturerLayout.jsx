@@ -1,12 +1,12 @@
-import { Layout,Sidebar, MenuItemLink } from 'react-admin';
+import { Layout, Sidebar, MenuItemLink } from 'react-admin';
 import { AppBar, Toolbar, Typography, Box, Avatar, Button } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom'; // Navigation and URL management
 import SchoolIcon from '@mui/icons-material/School';
 import PersonIcon from '@mui/icons-material/Person';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import PocketBase from 'pocketbase'; // PocketBase SDK
-import '../../Styling/Student.css'; // Import the CSS file
-import MenuBookIcon from '@mui/icons-material/MenuBook';
+import '../../Styling/Lecturer.css'; // Import the CSS file
 
 // Initialize PocketBase instance with your backend URL
 const pb = new PocketBase('https://ubiquitous-spork-4jggg9vqpw92q655-8090.app.github.dev');
@@ -18,19 +18,18 @@ const handleLogout = (navigate) => {
 };
 
 // Custom AppBar component
-export const AdminAppBar = (props) => {
+export const LecturerAppBar = (props) => {
     const navigate = useNavigate(); // Hook for navigation
 
     return (
         <AppBar
             {...props}
-            className="admin-app-bar" // Apply CSS class for AppBar
+            className="lecturer-app-bar" // Apply CSS class for AppBar
         >
             <Toolbar className="toolbar">
                 {/* Logo and Title Section */}
                 <Box className="logo-section">
                     <img src="src/images/Cape_college_logo.png" alt="Logo" className="logo-image" />
-
                 <Box className="text-container">
                  <div className="C">C</div>
                 <div className="ape">ape</div> 
@@ -40,9 +39,9 @@ export const AdminAppBar = (props) => {
             </Box>
             
 
-                {/* Center Title (Administrator) */}
+                {/* Center Title (Lecturer) */}
                 <Typography variant="h6" className="admin-title">
-                    Administrator
+                    Lecturer
                 </Typography>
 
                 {/* User Section (Avatar and Log Out Button) */}
@@ -63,7 +62,7 @@ export const AdminAppBar = (props) => {
 };
 
 // Custom Sidebar component
-export const AdminSideBar = (props) => {
+export const LecturerSideBar = (props) => {
     const location = useLocation();  // Get the current route
 
     // Function to determine if a menu item is active
@@ -83,14 +82,14 @@ export const AdminSideBar = (props) => {
                 }
             />
             
-            {/* Menu item for Applicants */}
+            {/* Menu item for Modules */}
             <MenuItemLink 
-                className={`menu-item ${isActive('/Applicants') ? 'menu-item-active' : ''}`}
-                to="/Applicants" 
-                primaryText="Applicants"
+                className={`menu-item ${isActive('/Modules') ? 'menu-item-active' : ''}`}
+                to="/Modules" 
+                primaryText="Modules"
                 leftIcon={
-                    <PersonIcon 
-                        className={`menu-icon ${isActive('/Applicants') ? 'menu-item-active' : ''}`}
+                    <MenuBookIcon 
+                        className={`menu-icon ${isActive('/Modules') ? 'menu-item-active' : ''}`}
                     />
                 }
             />
@@ -104,17 +103,6 @@ export const AdminSideBar = (props) => {
                     <AssessmentIcon 
                         className={`menu-icon ${isActive('/Assessments') ? 'menu-item-active' : ''}`}
                     />
-
-                }
-            />
-            <MenuItemLink 
-                className={`menu-item ${isActive('/Modules') ? 'menu-item-active' : ''}`}
-                to="/Modules" 
-                primaryText="Modules"
-                leftIcon={
-                    <MenuBookIcon 
-                        className={`menu-icon ${isActive('/Modules') ? 'menu-item-active' : ''}`}
-                    />
                 }
             />
         </Sidebar>
@@ -122,12 +110,12 @@ export const AdminSideBar = (props) => {
 };
 
 // Main Layout component that combines AppBar and Sidebar
-const AdminLayout = (props) => (
+const LecturerLayout = (props) => (
     <Layout
         {...props}
-        appBar={AdminAppBar} // Use custom AppBar
-        sidebar={AdminSideBar} // Use custom Sidebar
+        appBar={LecturerAppBar} // Use custom AppBar
+        sidebar={LecturerSideBar} // Use custom Sidebar
         // Remove the menu prop to avoid conflict
     />
 );
-export default AdminLayout;
+export default LecturerLayout;

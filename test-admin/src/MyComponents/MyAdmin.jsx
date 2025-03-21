@@ -11,7 +11,7 @@ import AdminLayout from "./MyLayouts/AdminLayout";
 import {PocketBaseProvider} from '../ra-pocketbase';
 
 
-const apiUrl = 'http://127.0.0.1:8090'; 
+const apiUrl = 'https://ubiquitous-spork-4jggg9vqpw92q655-8090.app.github.dev'; 
 
 export const dataProvider = PocketBaseProvider(apiUrl).dataProvider;
 export const authProvider = PocketBaseProvider(apiUrl).authProvider;

@@ -1,7 +1,7 @@
 /* Student.css - Revised */
 
 /* AppBar Styles */
-.student-app-bar {
+.lecturer-app-bar {
     height: 120px;
     margin-bottom: 103px;
     background: linear-gradient(to bottom, #2C6485, #0A171F);
@@ -145,7 +145,7 @@
     position: fixed;
     top: 100px;
     left: 0;
-    display: flex;
+    display:block;
     flex-direction: column;
     padding: 10px;
     background: linear-gradient(to bottom, #2C6485, #0A171F);
@@ -153,12 +153,12 @@
 
 /* Menu Item Styles - Revised for consistency */
 .menu-item {
-    width: 260px;
+    width: 200px;
     padding: 15px 20px;
     margin-top: 2%;
     color: #FFFFFF; /* Changed from #194D6C to white for better visibility on dark background */
     height: 60px; /* Fixed height instead of percentage for consistency */
-    margin-left: 0%;
+    margin-left: -10%;
     padding-left: 0%;
     transition: background-color 0.3s, color 0.3s;
     display: flex;

@@ -17,10 +17,8 @@ export const dataGridStyle = {
         color: '#4899ea',     // Header font color
     },
     '& .RaDatagrid-rowCell': {
-        padding: '20px',      // Row cells padding
         marginRight: '100x',  // Right margin for row cells
         fontSize: '16px',      // Row font size
-        width: '100%',
     },
 };
 
