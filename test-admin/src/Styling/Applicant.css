@@ -1,0 +1,463 @@
+/* Reset some basic elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 100%;
+  background-color: #f4f4f4;
+}
+
+.applicant-form {
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* Progress bar styling */
+.progress-container {
+  margin-bottom: 30px;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #3498db;
+  transition: width 0.3s ease-in-out;
+}
+
+.step-indicator {
+  font-size: 14px;
+  color: #666;
+  text-align: right;
+}
+
+/* Wizard step styling */
+.wizard-step {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.step-title {
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* Step navigation styling */
+.step-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.prev-button,
+.next-button,
+.submit-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 16px;
+}
+
+.prev-button {
+  background-color: #ecf0f1;
+  color: #7f8c8d;
+}
+
+.prev-button:hover {
+  background-color: #bdc3c7;
+}
+
+.next-button,
+.submit-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.next-button:hover,
+.submit-button:hover {
+  background-color: #2980b9;
+}
+
+.prev-button:disabled,
+.next-button:disabled,
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Review step styling */
+.review-step {
+  line-height: 1.8;
+}
+
+.review-section {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.review-section h4 {
+  font-weight: 600;
+  color: #3498db;
+  margin-bottom: 15px;
+}
+
+.review-item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.review-label {
+  width: 150px;
+  font-weight: 600;
+  color: #555;
+}
+
+.review-value {
+  flex: 1;
+}
+
+.review-grade {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.review-value.essay-text {
+  white-space: pre-wrap;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  font-style: italic;
+}
+
+/* Result message styling */
+.result-message {
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.result-message.success {
+  background-color: #d5f5e3;
+  color: #27ae60;
+}
+
+.result-message.error {
+  background-color: #fdedeb;
+  color: #e74c3c;
+}
+
+/* Add debug styling */
+.debug-info {
+  font-size: 12px;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+/* Error message styling */
+.error-message {
+  background-color: #fdedeb;
+  color: #e74c3c;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Form field styling */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1 1 calc(50% - 20px);
+  min-width: 250px;
+}
+
+.form-group.full-width {
+  flex: 1 1 100%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 100px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: #bbb;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #aaa;
+}
+
+.form-group input[type="file"] {
+  padding: 10px 0;
+  border: none;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 5px;
+  color: #777;
+  font-size: 12px;
+}
+
+/* Checkbox styling */
+.form-group.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-group.checkbox-group input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.form-group.checkbox-group label {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+/* Grade section styling */
+.grade-row {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.add-button,
+.remove-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.add-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.add-button:hover {
+  background-color: #2980b9;
+}
+
+.remove-button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.remove-button:hover {
+  background-color: #c0392b;
+}
+
+.remove-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* App header styling */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.college-logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.c-letter {
+  color: #3498db;
+  font-size: 32px;
+}
+
+.ape-text, .ollege-text {
+  color: #444;
+}
+
+.header-title {
+  color: #3498db;
+  font-weight: 300;
+  margin: 0;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  color: #333;
+  font-weight: 400;
+}
+
+/* Form validation styling */
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+  border-color: #e74c3c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-group {
+    flex: 1 1 100%;
+  }
+  
+  .wizard-step {
+    padding: 20px;
+  }
+  
+  .step-navigation button {
+    padding: 10px 20px;
+  }
+}
+
+/* Enhance button group appearance */
+.form-group.button-group {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-width: auto;
+}
+
+/* Status indicators for form completion */
+.completed-field {
+  position: relative;
+}
+
+.completed-field::after {
+  content: "✓";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+/* Custom select arrow */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px top 50%;
+  background-size: 12px auto;
+  padding-right: 30px;
+}
+
+/* Animations for input focus */
+@keyframes inputFocus {
+  0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+  50% { box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.3); }
+  100% { box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); }
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  animation: inputFocus 0.3s ease-out;
+}
+
+/* Style disabled fields */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Add form container shadow and styling */
+.form-container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 40px;
+}

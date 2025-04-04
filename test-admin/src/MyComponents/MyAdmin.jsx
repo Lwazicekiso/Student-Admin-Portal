@@ -19,7 +19,7 @@ export const authProvider = PocketBaseProvider(apiUrl).authProvider;
 
 export const MyAdmin = () => (
     <Admin dataProvider={dataProvider} layout={AdminLayout} >
-        <Resource name="applicants" list={ApplicantList} create={ApplicantCreate} edit={ApplicantEdit} show={ApplicantShow} />
+        <Resource name="Applicants" list={ApplicantList} create={ApplicantCreate} edit={ApplicantEdit} show={ApplicantShow} />
         <Resource name="assessments" list={AssessmentList} create={AssessmentCreate} edit={AssessmentEdit} show={AssessmentShow} />
         <Resource name="course" list={CourseList} create={CourseCreate} edit={CourseEdit} show={CourseShow} />
         <Resource name="lecturers" list={LecturerList} create={LecturerCreate} edit={LecturerEdit} show={LecturerShow} />

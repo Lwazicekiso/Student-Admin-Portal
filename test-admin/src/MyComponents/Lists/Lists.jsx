@@ -10,21 +10,38 @@ import { Admin,DateInput,DateField, Resource, List, Datagrid, TextField, EmailFi
 // Applicants Resource
 // Field: name (text)
 // ========================
-export const dataGridStyle = {
-    '& .RaDatagrid-headerCell': {
-        padding: '16px',     // Header cells padding
-        fontSize: '18px',     // Header font size
-        color: '#4899ea',     // Header font color
-    },
-    '& .RaDatagrid-rowCell': {
-        marginRight: '100x',  // Right margin for row cells
-        fontSize: '16px',      // Row font size
-    },
+// Adjusted styles to prevent overlap with sidebar (260–280px) and top app bar (120px)
+export const commonStyles = {
+    width: '80%',
+
+    marginTop: '40%',             // Leaves room for the app bar
+    padding: '20px',
+    minHeight: 'calc(100vh - 120px)', // Occupies the rest of the screen
+    boxSizing: 'border-box',
+    // color: 'blue',                // Optional global text color
 };
 
-export const commonStyles = {
-    marginTop: '80px', // Adjust to prevent overlap with the AppBar
-    color: 'blue',      // Global color for the resource
+// Improved DataGrid style
+export const dataGridStyle = {
+    height:"70%",
+    width: '100%',
+    // Table Header Cells
+    '& .RaDatagrid-headerCell': {
+    // Adjusted width for the sidebar
+    width: '100%',
+
+    },
+    // Table Row Cells
+    '& .RaDatagrid-rowCell': {
+        width: '100%',
+
+    },
+    // Optional: a subtle hover effect for rows
+    '& .RaDatagrid-row:hover': {
+   // Adjusted width for the sidebar
+   width: '80%',
+
+    },
 };
 
 // ------------------------------------------------------------------
@@ -138,10 +155,23 @@ export const ApplicantCreate = (props) => (
                 ]}
                 validate={required()}
             />
+            <SelectInput 
+                source="Assessement_Type" 
+                label="Assessement Type"
+                choices={[
+                    { id: 'Assignment', name: 'Assignment' },
+                    { id: 'A1', name: 'A1' },
+                    { id: 'A2', name: 'A2' },
+                    { id: 'A3', name: 'A3' },
+                    { id: 'Quiz', name: 'Quiz' },
+                ]}
+                validate={required()}
+            />
+            <NumberInput source="Weight" label="Weight" />
             <FileInput source="Matric_Report" label="Matric Report" accept="image/*,application/pdf">
                 <FileField source="src" title="Matric Report" />
             </FileInput>
-            <FileInput source="Certificate" label="Certificate" accept="image/*,application/pdf" multiple={true}>
+            <FileInput source="Certificate" label="Certificate" accept="image/*,application/pdf" multiple>
                 <FileField source="src" title="Certificate" />
             </FileInput>
             <NumberInput source="Phone" label="Phone" />
@@ -149,6 +179,7 @@ export const ApplicantCreate = (props) => (
         </CustomSimpleForm>
     </Create>
 );
+
 // ========================
 // Assessments Resource
 // Fields: Student_ID (relation to Students), Mark (number), Module_Name (relation to Modules)
@@ -163,6 +194,12 @@ export const AssessmentList = (props) => (
             <ReferenceField source="Module_Name" reference="modules" label="Module">
                 <TextField source="Module_Name" />
             </ReferenceField>
+            <TextField source="Assessement_Type" label="Assessement_Type">
+            Assessement_Type
+            </TextField>
+            <TextField source="Weight" label="Weight">
+            Weight
+            </TextField>
         </Datagrid>
     </List>
 );
@@ -326,6 +363,9 @@ export const ModuleList = (props) => (
             <ReferenceField label="Lecturer" source="Lecturer_Name" reference="lecturers">
                 <TextField source="lecturer_name" />
             </ReferenceField>
+
+
+            
         </Datagrid>
     </List>
 );

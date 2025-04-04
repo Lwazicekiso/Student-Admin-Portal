@@ -1,7 +1,7 @@
 import { 
     AssessmentList, AssessmentCreate, AssessmentEdit, AssessmentShow,
-    CourseList, CourseCreate, CourseEdit, CourseShow,
-    ModuleList, ModuleCreate, ModuleEdit, ModuleShow,
+    CourseList,CourseShow,
+    ModuleList, ModuleShow,
     StudentList, StudentCreate, StudentEdit, StudentShow
 } from './Lists/Lists.jsx';
 import { Admin,Resource} from "react-admin";
@@ -17,8 +17,8 @@ export const authProvider = PocketBaseProvider(apiUrl).authProvider;
 export const MyLecturer = () => (
     <Admin dataProvider={dataProvider} layout={LecturerLayout} >
         <Resource name="Assessments" list={AssessmentList} create={AssessmentCreate} edit={AssessmentEdit} show={AssessmentShow} />
-        <Resource name="Course" list={CourseList} create={CourseCreate} edit={CourseEdit} show={CourseShow} />
-        <Resource name="Modules" list={ModuleList} create={ModuleCreate} edit={ModuleEdit} show={ModuleShow} />
+        <Resource name="Course" list={CourseList} show={CourseShow} />
+        <Resource name="Modules" list={ModuleList} show={ModuleShow} />
         <Resource name="Students" list={StudentList} create={StudentCreate} edit={StudentEdit} show={StudentShow} />
     </Admin>
 );

@@ -1,57 +1,39 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-
+import { Link } from 'react-router-dom';
 import '../Styling/MyLogin.css';
 
-
-
-
 const MyLogin = () => {
-
-    return(
-        <div className="my-login-page">
-        <div className="role-symbol-container">
-            <div style={{ textAlign: 'center' }}>
-                <Link to="/admin">
-                    <img src="src/images/admin_symbol.jpg" alt="admin" className="bouncing-image" />
+    return (
+        <div className="login-container">
+            {/* Left Section: Login Options */}
+            <div className="login-panel">
+                <h2>Sign in to <span className="brand-name">Helimlick</span></h2>
+                
+                <Link to="/Applicant" className="login-option">
+                    <span className="icon">📄</span> Applicant
                 </Link>
-                <p>Admin</p>
+
+                <Link to="/student" className="login-option">
+                    <span className="icon">🎓</span> Student
+                </Link>
+
+                <Link to="/admin" className="login-option">
+                    <span className="icon">⚙️</span> Administrator
+                </Link>
+                <Link to="/Lecturer" className="login-option">
+                    <span className="icon">🎓</span> Lecturer
+                </Link>
+
             </div>
 
-           
-
-            <div style={{ textAlign: 'center' }}>
-                <Link to="/staff">
-                    <img src="src/images/staff_symbol.jpg" alt="admin"  className="bouncing-image" />
-                </Link>
-                <p>Staff</p>
+            {/* Right Section: Welcome Message & Branding */}
+            <div className="welcome-section">
+                <img src="src/images/university_logo.png" alt="University Logo" className="university-logo" />
+                <h1>Welcome to Heimlick University</h1>
+                <img src="src/images/campus_students.jpg" alt="Students" className="welcome-image" />
             </div>
-  
-            <div style={{ textAlign: 'center' }}>
-                <Link to="/student">
-                    <img src="src/images/student_symbol.jpg" alt="admin"  className="bouncing-image" />
-                </Link>
-                <p>Student</p>
-            </div>
-
-             {/* Applicant Section */}
-             <div className="applicant-container" style={{ textAlign: 'center' }}>
-                <Link to="/applicant">
-                    <img src="src/images/student_symbol.jpg" alt="applicant" className="bouncing-image" />
-                </Link>
-                <p>Applicant</p>
-            </div>
-
-{/*naming*/}
-           <div className="C">C</div>
-            <div className="ape">ape</div> 
-            <div className="C_2">C</div>
-            <div className="ollege">ollege</div>
-            
-        </div>
         </div>
     );
 };
 
 export default MyLogin;
-

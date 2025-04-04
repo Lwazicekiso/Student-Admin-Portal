@@ -1,154 +1,78 @@
-/* add padding !!!!!*/ 
+/* General Page Styles */
 body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Dynalight', sans-serif;
-  }
-  
-  .role-symbol-container {
-    display: flex;
-    justify-content: last baseline;
-    align-items: last baseline;
-    height: 100vh; 
-    gap: 60px;
-    flex-direction: row;
-    min-height: 100vh; 
-  }
-
-  /* image effects*/ 
-
- 
-  
-.bouncing-image {
-    width: 100px; 
-    height: auto; 
-    transition: transform 0.3s ease; 
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.bouncing-image:hover {
-  transform: translateY(-10px); 
+/* Login Page Container */
+.login-container {
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-
-/*.my-login-page {
-  background-image: url('/workspaces/2024-oi348-group-sandbox-epsilon/test-admin/src/images/homescreen_image.jpg');
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat; 
-  height: 100vh; 
-  width: 100%; 
-  position: relative; 
-  overflow: hidden; 
-}*/
-  
- body {
-    background-image: url('/workspaces/2024-oi348-group-sandbox-epsilon/test-admin/src/images/homescreen_image.jpg');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-  }
-
-  .body {
-    position: absolute;
-    left: 59.67%;
-    right: 23.02%;
-    top: 60.57%;
-    bottom: 13.68%;
-    background: url('./images/icon.svg') no-repeat center; /* Adjust the path as needed */
-    background-size: cover; /* Adjust this based on how you want to display the SVG */
+/* Left Panel - Login Section */
+.login-panel {
+  width: 40%;
+  background: #fff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
 }
 
-
-/*Cape College*/
-
-.ollege {
-  position: absolute;
-  width: 168px; 
-  height: 52px; 
-  left: 167px; 
-  top: 203px; 
-
-  font-family: 'Dynalight'; 
-  font-style: normal;
-  font-weight: 400;
-  font-size: 60px;
-  line-height: 73px;
-
-  color: #FFFFFF; 
+.brand-name {
+  color: #094ec6;
+  font-weight: bold;
 }
 
-.C {
-  position: absolute;
-  width: 99px;
-  height: 160px;
-  left: 44px;
-  top: 0px;
-
-  font-family: 'Dynalight';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 150px;
-  line-height: 182px;
-
-  color: #FFFFFF;
+.login-option {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
 }
 
-.ape {
-  position: absolute;
-  width: 93px;
-  height: 52px;
-  left: 124px;
-  top: 58px;
-
-  font-family: 'Dynalight';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 60px;
-  line-height: 73px;
-
-  color: #FFFFFF;
+.login-option:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-3px);
 }
 
-.C_2 {
-  position: absolute;
-    width: 99px;
-    height: 160px;
-    left: 93px;
-    top: 139px;
-
-    font-family: 'Dynalight';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 150px;
-    line-height: 182px;
-
-    color: #FFFFFF;
+/* Right Panel - Welcome Section */
+.welcome-section {
+  width: 60%;
+  text-align: center;
+  background-color: #fafafa;
+  padding: 40px;
 }
 
-p {
-   font-family: 'Times New Roman', Times, serif;
-   line-height: normal;
-
-   color: #FFFFFF;
-
-
-font-style: normal;
-font-weight: 400;
-font-size: 40px;
-
-letter-spacing: 0.03em;
-
+.university-logo {
+  width: 120px;
+  margin-bottom: 20px;
 }
 
-
-
-/* Apllicant placement*/ 
-.applicant-container {
-  position: absolute; /* Positioning the applicant section absolutely */
-  
-  right: 10px; /* Adjust as needed for horizontal position */
-  text-align: center; /* Center the text for applicant */
+.welcome-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
 }

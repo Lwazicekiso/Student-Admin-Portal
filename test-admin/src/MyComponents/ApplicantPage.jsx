@@ -1,488 +1,903 @@
-import { Create, SimpleForm, TextInput, DateInput, BooleanInput, Toolbar, SaveButton,ArrayInput,SimpleFormIterator,Button,NumberInput,SelectInput } from 'react-admin';
-import { Accordion, AccordionSummary, AccordionDetails, Typography, Box } from '@mui/material';
-import { useState } from 'react';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import LockIcon from '@mui/icons-material/Lock';
-import EmailIcon from '@mui/icons-material/Email';
-import AccessibilityIcon from '@mui/icons-material/Accessibility';
-import SchoolIcon from '@mui/icons-material/School';
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import React, { useState, useEffect } from 'react';
+import PocketBase from 'pocketbase';
+import '../Styling/Applicant.css'; // Import your CSS file for styling
 
-// for form validation
-import {
-    required,
-    minLength,
-    maxLength,
-    minValue,
-    maxValue,
-    number,
-    regex,
-    email,
-    choices
-} from 'react-admin';
-// Reusable styling variables
-const styles = {
-    accordionHeader: {
-        backgroundColor: '#1A496D',
-        color: '#FFF',
-        padding: '10px',
+function ApplicantForm() {
+  // Initialize PocketBase client - using a more reliable connection approach
+  const [pb, setPb] = useState(null);
+  const [connectionStatus, setConnectionStatus] = useState('initializing');
   
-
-    },
-    accordionDetails: {
-        backgroundColor: '#F7F9FC',
-        padding: '20px',
-        border: '1px solid #E0E0E0',
-        boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)',
-    },
-    iconMargin: {
-        marginRight: '10px',
-    },
-    saveButton: {
-        backgroundColor: 'red',
-        color: '#FFF',
-        fontWeight: 'bold',
-        '&:hover': {
-            backgroundColor: '#E64A19',
-        },
-    },
-    toolbar: {
-        justifyContent: 'center',
-        marginTop: '20px',
-    },
-};
-
-
-
-
-
-
-
-export const ApplicantForm = () => {
-    const [expanded, setExpanded] = useState(false);
-
-    const handleChange = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
-    };
-
+  // Initialize PocketBase and check connection
+  useEffect(() => {
+    try {
+      // Using a relative URL is more reliable than hardcoding a domain
+      // Change this URL to match your actual PocketBase server
+      const pbClient = new PocketBase('https://ubiquitous-spork-4jggg9vqpw92q655-8090.app.github.dev/');
+      setPb(pbClient);
+      
+      // Test connection
+      pbClient.health.check()
+        .then(() => {
+          console.log("PocketBase connection established");
+          setConnectionStatus('connected');
+        })
+        .catch(err => {
+          console.error("PocketBase connection failed:", err);
+          setConnectionStatus('failed');
+        });
+    } catch (error) {
+      console.error("Error initializing PocketBase:", error);
+      setConnectionStatus('failed');
+    }
+  }, []);
+  
+  // Define wizard steps
+  const steps = [
+    { id: 'personal', title: 'Personal Information' },
+    { id: 'contact', title: 'Contact Information' },
+    { id: 'disabilities', title: 'Disabilities' },
+    { id: 'course', title: 'Course Selection' },
+    { id: 'grades', title: 'Academic Grades' },
+    { id: 'essay', title: 'Personal Essay' },
+    { id: 'review', title: 'Review & Submit' }
+  ];
+  
+  // State for form data
+  const [formData, setFormData] = useState({
+    title: '',
+    firstName: '',
+    lastName: '',
+    gender: '',
+    dob: '',
+    nationalId: '',
+    citizen: '',
+    country: '',
+    highSchool: '',
+    documents: null,
+    email: '',
+    mobile: '',
+    address: '',
+    hasDisability: false,
+    disabilityDetails: '',
+    Course_selection: '',
+    academicGrades: [{ subject: '', grade: '', startDate: '', endDate: '' }],
+    essay: ''
+  });
+  
+  // State for wizard control
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState({ success: false, message: '' });
+  const [availableCourses, setAvailableCourses] = useState([]);
+  const [loadingCourses, setLoadingCourses] = useState(true);
+  
+  // Fetch courses on component mount
+  useEffect(() => {
+    if (!pb || connectionStatus !== 'connected') return;
+    
+    async function fetchCourses() {
+      setLoadingCourses(true);
+      try {
+        const records = await pb.collection('Course').getFullList({
+          sort: 'Course_Name',
+        });
+        console.log("Courses fetched:", records);
+        setAvailableCourses(records);
+        setLoadingCourses(false);
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+        setLoadingCourses(false);
+      }
+    }
+    
+    fetchCourses();
+  }, [pb, connectionStatus]);
+  
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value, type, checked, files } = e.target;
+    
+    if (type === 'file') {
+      // Check file size (5MB max)
+      if (files[0] && files[0].size > 5 * 1024 * 1024) {
+        alert('File size exceeds 5MB limit');
+        return;
+      }
+      setFormData({
+        ...formData,
+        [name]: files[0]
+      });
+    } else if (type === 'checkbox') {
+      setFormData({
+        ...formData,
+        [name]: checked
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
+  };
+  
+  // Handle academic grade changes
+  const handleGradeChange = (index, field, value) => {
+    const newGrades = [...formData.academicGrades];
+    newGrades[index][field] = value;
+    
+    setFormData({
+      ...formData,
+      academicGrades: newGrades
+    });
+  };
+  
+  // Add new grade
+  const handleAddGrade = () => {
+    setFormData({
+      ...formData,
+      academicGrades: [
+        ...formData.academicGrades,
+        { subject: '', grade: '', startDate: '', endDate: '' }
+      ]
+    });
+  };
+  
+  // Remove grade
+  const handleRemoveGrade = (index) => {
+    const newGrades = [...formData.academicGrades];
+    newGrades.splice(index, 1);
+    
+    setFormData({
+      ...formData,
+      academicGrades: newGrades
+    });
+  };
+  
+  // Navigate to next step
+  const nextStep = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+      window.scrollTo(0, 0);
+    }
+  };
+  
+  // Navigate to previous step
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+      window.scrollTo(0, 0);
+    }
+  };
+  
+  // Submit form data to PocketBase
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!pb) {
+      setSubmitResult({ 
+        success: false, 
+        message: 'Database connection not established. Please try again later.' 
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitResult({ success: false, message: '' });
+    
+    try {
+      // Create FormData object for file upload
+      const formDataToSend = new FormData();
+      
+      // Add all fields to FormData
+      Object.keys(formData).forEach(key => {
+        if (key === 'documents' && formData[key]) {
+          formDataToSend.append(key, formData[key]);
+        } else if (key === 'academicGrades') {
+          formDataToSend.append(key, JSON.stringify(formData[key]));
+        } else if (key === 'hasDisability') {
+          formDataToSend.append(key, JSON.stringify(formData[key]));
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
+      
+      // Debug: log what's being sent (for debugging only)
+      console.log('Submitting form data with the following fields:');
+      for (const pair of formDataToSend.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+      }
+      
+      // Submit to PocketBase
+      const record = await pb.collection('Applicants').create(formDataToSend);
+      
+      console.log('Form submitted successfully:', record);
+      setSubmitResult({ 
+        success: true, 
+        message: 'Your application has been submitted successfully!' 
+      });
+      
+      // Reset to first step after successful submission if needed
+      // setCurrentStep(0);
+      // setFormData({...initialFormData});
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      let errorMessage = 'Failed to submit application. Please try again.';
+      
+      // PocketBase stores detailed errors in error.data
+      if (error.data) {
+        console.error('Detailed error:', error.data);
+        
+        // Extract field-specific errors if available
+        const fieldErrors = [];
+        for (const field in error.data) {
+          if (error.data[field] && error.data[field].message) {
+            fieldErrors.push(`${field}: ${error.data[field].message}`);
+          }
+        }
+        
+        if (fieldErrors.length > 0) {
+          errorMessage = `Validation errors: ${fieldErrors.join(', ')}`;
+        }
+      }
+      
+      setSubmitResult({ 
+        success: false, 
+        message: `Error: ${error.message || errorMessage}` 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  
+  // Validate current step
+  const validateStep = () => {
+    const currentStepId = steps[currentStep].id;
+    
+    switch (currentStepId) {
+      case 'personal':
+        return formData.title && formData.firstName && formData.lastName && 
+               formData.gender && formData.dob && formData.nationalId &&
+               formData.citizen && formData.country && formData.highSchool;
+      case 'contact':
+        return formData.email && formData.mobile && formData.address;
+      case 'disabilities':
+        return true; // Always valid as this step is optional
+      case 'course':
+        return formData.Course_selection !== '';
+      case 'grades':
+        return formData.academicGrades.length > 0 && 
+               formData.academicGrades.every(grade => grade.subject && grade.grade);
+      case 'essay':
+        return true; // Essay could be optional
+      default:
+        return true;
+    }
+  };
+  
+  // Render progress bar
+  const renderProgressBar = () => {
+    const progress = ((currentStep + 1) / steps.length) * 100;
+    
     return (
-<Create>
-    {/* The SimpleForm component wraps the form content and includes a custom toolbar with a Save button */}
-    <SimpleForm toolbar={<SaveToolbar />}>
-        
-        {/* Accordion for the "Personal Information" section */}
-        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
-                {/* LockIcon to visually indicate the section */}
-                <LockIcon sx={styles.iconMargin} />
-                {/* Title for the "Personal Information" section */}
-                <Typography variant="h6">1. Personal Information</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={styles.accordionDetails}>
-                {/* PersonalInfo component contains the input fields related to personal information */}
-                <PersonalInfo />
-            </AccordionDetails>
-        </Accordion>
-
-        {/* Accordion for the "Contact Information" section */}
-        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} sx={{ width: '100%', borderRadius:'10%' }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
-                {/* EmailIcon to visually indicate the section */}
-                <EmailIcon sx={styles.iconMargin} />
-                {/* Title for the "Contact Information" section */}
-                <Typography variant="h6">2. Contact Information</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={styles.accordionDetails}>
-                {/* ContactInfo component contains the input fields related to contact information */}
-                <ContactInfo />
-            </AccordionDetails>
-        </Accordion>
-
-        {/* Accordion for the "Disabilities" section */}
-        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} sx={{ width: '100%' }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
-                {/* AccessibilityIcon to visually indicate the section */}
-                <AccessibilityIcon sx={styles.iconMargin} />
-                {/* Title for the "Disabilities" section */}
-                <Typography variant="h6">3. Disabilities</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={styles.accordionDetails}>
-                {/* Disabilities component contains the input fields related to disabilities */}
-                <Disabilities />
-            </AccordionDetails>
-        </Accordion>
-
-        {/* Accordion for the "Academic History" section */}
-        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')} sx={{ width: '100%' }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
-                {/* SchoolIcon to visually indicate the section */}
-                <SchoolIcon sx={styles.iconMargin} />
-                {/* Title for the "Academic History" section */}
-                <Typography variant="h6">4. Academic History</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={styles.accordionDetails}>
-                {/* AcademicHistory component contains the input fields related to academic history */}
-                <AcademicHistory />
-            </AccordionDetails>
-        </Accordion>
-
-        {/* Accordion for the "Personal Essay" section */}
-        <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')} sx={{ width: '100%' }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
-                {/* AssignmentIcon to visually indicate the section */}
-                <AssignmentIcon sx={styles.iconMargin} />
-                {/* Title for the "Personal Essay" section */}
-                <Typography variant="h6">5. Personal Essay</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={styles.accordionDetails}>
-                {/* PersonalEssay component contains the input field for the personal essay */}
-                <PersonalEssay />
-            </AccordionDetails>
-        </Accordion>
-        {/* Accordion for Course selection*/}
-        <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')} sx={{ width: '100%' }}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={styles.accordionHeader}>
-                        <SchoolIcon sx={styles.iconMargin} />
-                        <Typography variant="h6">6. Course Selection</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails sx={styles.accordionDetails}>
-                        <SelectInput
-                            source="course"
-                            label="Select Course"
-                            fullWidth
-                            validate={required("Choose a Course")}
-                            choices={[
-                                { id: 'bachelor_cs', name: 'Bachelor of Computer Science' },
-                                { id: 'bachelor_eng', name: 'Bachelor of Engineering' },
-                                { id: 'bachelor_arts', name: 'Bachelor of Arts' },
-                                { id: 'bachelor_business', name: 'Bachelor of Business Administration' },
-                                { id: 'bachelor_med', name: 'Bachelor of Medicine' },
-                                { id: 'bachelor_law', name: 'Bachelor of Law' },
-                                { id: 'bachelor_psychology', name: 'Bachelor of Psychology' },
-                                { id: 'bachelor_social_science', name: 'Bachelor of Social Science' },
-                                { id: 'bachelor_health_science', name: 'Bachelor of Health Science' },
-                                { id: 'Bachelor_of_Data_Analysis', name: 'Bachelor in Data Analysis' },
-                                { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor of Supply Chain' },
-                                { id: 'Bachelor_of_Data_Analysis', name: 'Bachelor of Commerce :Accounting science ' },
-                                { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor of Information Analysis' },
-                            ]}
-                            helperText="Select the bachelor's degree program you wish to enroll in."
-                        />
-                    </AccordionDetails>
-                </Accordion>
-        
-    </SimpleForm>
-</Create>
-
+      <div className="progress-container">
+        <div className="progress-bar">
+          <div 
+            className="progress-fill" 
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+        <div className="step-indicator">
+          Step {currentStep + 1} of {steps.length}: {steps[currentStep].title}
+        </div>
+      </div>
     );
+  };
+  
+  // Render step navigation
+  const renderStepNavigation = () => {
+    return (
+      <div className="step-navigation">
+        <button 
+          type="button" 
+          className="prev-button" 
+          onClick={prevStep}
+          disabled={currentStep === 0}
+        >
+          Previous
+        </button>
+        
+        {currentStep < steps.length - 1 ? (
+          <button 
+            type="button" 
+            className="next-button" 
+            onClick={nextStep}
+            disabled={!validateStep()}
+          >
+            Next
+          </button>
+        ) : (
+          <button 
+            type="submit" 
+            className="submit-button" 
+            disabled={isSubmitting || connectionStatus !== 'connected'}
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit Application'}
+          </button>
+        )}
+      </div>
+    );
+  };
+  
+  // Render Personal Information step
+  const renderPersonalInfoStep = () => {
+    return (
+      <div className="step-content">
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="title">Title</label>
+            <select 
+              id="title" 
+              name="title" 
+              value={formData.title} 
+              onChange={handleInputChange}
+              required
+            >
+              <option value="">Select Title</option>
+              <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
+              <option value="Ms">Ms</option>
+              <option value="Dr">Dr</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="gender">Gender</label>
+            <select 
+              id="gender" 
+              name="gender" 
+              value={formData.gender} 
+              onChange={handleInputChange}
+              required
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="firstName">First Name</label>
+            <input 
+              type="text" 
+              id="firstName" 
+              name="firstName" 
+              value={formData.firstName} 
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name</label>
+            <input 
+              type="text" 
+              id="lastName" 
+              name="lastName" 
+              value={formData.lastName} 
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        </div>
+        
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="dob">Date of Birth</label>
+            <input 
+              type="date" 
+              id="dob" 
+              name="dob" 
+              value={formData.dob} 
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="nationalId">National ID</label>
+            <input 
+              type="text" 
+              id="nationalId" 
+              name="nationalId" 
+              value={formData.nationalId} 
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        </div>
+        
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="citizen">Citizenship</label>
+            <input 
+              type="text" 
+              id="citizen" 
+              name="citizen" 
+              value={formData.citizen} 
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="country">Country</label>
+            <input 
+              type="text" 
+              id="country" 
+              name="country" 
+              value={formData.country} 
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        </div>
+        
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="highSchool">High School</label>
+            <input 
+              type="text" 
+              id="highSchool" 
+              name="highSchool" 
+              value={formData.highSchool} 
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="documents">Documents (PDF only)</label>
+            <input 
+              type="file" 
+              id="documents" 
+              name="documents" 
+              accept="application/pdf" 
+              onChange={handleInputChange}
+              required
+            />
+            <small>Only PDF files are accepted (max 5MB)</small>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
+  // Render Contact Information step
+  const renderContactInfoStep = () => {
+    return (
+      <div className="step-content">
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              value={formData.email} 
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="mobile">Mobile Number</label>
+            <input 
+              type="tel" 
+              id="mobile" 
+              name="mobile" 
+              value={formData.mobile} 
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        </div>
+        
+        <div className="form-row">
+          <div className="form-group full-width">
+            <label htmlFor="address">Full Address</label>
+            <textarea 
+              id="address" 
+              name="address" 
+              value={formData.address} 
+              onChange={handleInputChange}
+              rows="3"
+              required
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
+  // Render Disabilities step
+  const renderDisabilitiesStep = () => {
+    return (
+      <div className="step-content">
+        <div className="form-row">
+          <div className="form-group checkbox-group">
+            <input 
+              type="checkbox" 
+              id="hasDisability" 
+              name="hasDisability" 
+              checked={formData.hasDisability} 
+              onChange={handleInputChange}
+            />
+            <label htmlFor="hasDisability">Do you have any disabilities?</label>
+          </div>
+        </div>
+        
+        <div className="form-row">
+          <div className="form-group full-width">
+            <label htmlFor="disabilityDetails">Please provide details about your disability</label>
+            <textarea 
+              id="disabilityDetails" 
+              name="disabilityDetails" 
+              value={formData.disabilityDetails} 
+              onChange={handleInputChange}
+              rows="3"
+              disabled={!formData.hasDisability}
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
+  // Render Course Selection step
+  const renderCourseSelectionStep = () => {
+    return (
+      <div className="step-content">
+        <div className="form-row">
+          <div className="form-group full-width">
+            <label htmlFor="Course_selection">Select Course</label>
+            {loadingCourses ? (
+              <div className="loading-message">Loading courses...</div>
+            ) : (
+              <>
+                {availableCourses.length > 0 ? (
+                  <select 
+                    id="Course_selection" 
+                    name="Course_selection" 
+                    value={formData.Course_selection} 
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="">Select a Course</option>
+                    {availableCourses.map(course => (
+                      <option key={course.id} value={course.id}>
+                        {course.Course_Name || course.name}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <div className="error-message">
+                    No courses found. Please contact administrator.
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
+  // Render Academic Grades step
+  const renderAcademicGradesStep = () => {
+    return (
+      <div className="step-content">
+        <h4>Academic Grades</h4>
+        
+        {formData.academicGrades.map((grade, index) => (
+          <div className="grade-row" key={index}>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor={`subject-${index}`}>Subject</label>
+                <input 
+                  type="text" 
+                  id={`subject-${index}`} 
+                  value={grade.subject} 
+                  onChange={(e) => handleGradeChange(index, 'subject', e.target.value)} 
+                  required
+                />
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor={`grade-${index}`}>Grade</label>
+                <input 
+                  type="text" 
+                  id={`grade-${index}`} 
+                  value={grade.grade} 
+                  onChange={(e) => handleGradeChange(index, 'grade', e.target.value)} 
+                  required
+                />
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor={`startDate-${index}`}>Start Date</label>
+                <input 
+                  type="date" 
+                  id={`startDate-${index}`} 
+                  value={grade.startDate} 
+                  onChange={(e) => handleGradeChange(index, 'startDate', e.target.value)} 
+                />
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor={`endDate-${index}`}>End Date</label>
+                <input 
+                  type="date" 
+                  id={`endDate-${index}`} 
+                  value={grade.endDate} 
+                  onChange={(e) => handleGradeChange(index, 'endDate', e.target.value)} 
+                />
+              </div>
+              
+              <div className="form-group button-group">
+                <button 
+                  type="button" 
+                  className="remove-button" 
+                  onClick={() => handleRemoveGrade(index)}
+                  disabled={formData.academicGrades.length <= 1}
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+        
+        <div className="button-row">
+          <button type="button" className="add-button" onClick={handleAddGrade}>
+            Add Grade
+          </button>
+        </div>
+      </div>
+    );
+  };
+  
+  // Render Personal Essay step
+  const renderPersonalEssayStep = () => {
+    return (
+      <div className="step-content">
+        <div className="form-row">
+          <div className="form-group full-width">
+            <label htmlFor="essay">Personal Essay</label>
+            <textarea 
+              id="essay" 
+              name="essay" 
+              value={formData.essay} 
+              onChange={handleInputChange}
+              rows="6"
+            ></textarea>
+            <small>Tell us about your aspirations and why you are selecting this course</small>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
+  // Render Review step
+  const renderReviewStep = () => {
+    const selectedCourse = availableCourses.find(course => course.id === formData.Course_selection);
+    
+    return (
+      <div className="step-content review-step">
+        <h3>Review Your Application</h3>
+        <p>Please review your application details before submitting.</p>
+        
+        <div className="review-section">
+          <h4>Personal Information</h4>
+          <div className="review-item">
+            <span className="review-label">Name:</span>
+            <span className="review-value">{formData.title} {formData.firstName} {formData.lastName}</span>
+          </div>
+          <div className="review-item">
+            <span className="review-label">Gender:</span>
+            <span className="review-value">{formData.gender}</span>
+          </div>
+          <div className="review-item">
+            <span className="review-label">Date of Birth:</span>
+            <span className="review-value">{formData.dob}</span>
+          </div>
+          <div className="review-item">
+            <span className="review-label">National ID:</span>
+            <span className="review-value">{formData.nationalId}</span>
+          </div>
+          <div className="review-item">
+            <span className="review-label">Citizenship:</span>
+            <span className="review-value">{formData.citizen}</span>
+          </div>
+          <div className="review-item">
+            <span className="review-label">Country:</span>
+            <span className="review-value">{formData.country}</span>
+          </div>
+          <div className="review-item">
+            <span className="review-label">High School:</span>
+            <span className="review-value">{formData.highSchool}</span>
+          </div>
+          <div className="review-item">
+            <span className="review-label">Documents:</span>
+            <span className="review-value">{formData.documents ? formData.documents.name : 'No document uploaded'}</span>
+          </div>
+        </div>
+        
+        <div className="review-section">
+          <h4>Contact Information</h4>
+          <div className="review-item">
+            <span className="review-label">Email:</span>
+            <span className="review-value">{formData.email}</span>
+          </div>
+          <div className="review-item">
+            <span className="review-label">Mobile:</span>
+            <span className="review-value">{formData.mobile}</span>
+          </div>
+          <div className="review-item">
+            <span className="review-label">Address:</span>
+            <span className="review-value">{formData.address}</span>
+          </div>
+        </div>
+        
+        <div className="review-section">
+          <h4>Disabilities</h4>
+          <div className="review-item">
+            <span className="review-label">Has Disability:</span>
+            <span className="review-value">{formData.hasDisability ? 'Yes' : 'No'}</span>
+          </div>
+          {formData.hasDisability && (
+            <div className="review-item">
+              <span className="review-label">Details:</span>
+              <span className="review-value">{formData.disabilityDetails}</span>
+            </div>
+          )}
+        </div>
+        
+        <div className="review-section">
+          <h4>Course Selection</h4>
+          <div className="review-item">
+            <span className="review-label">Selected Course:</span>
+            <span className="review-value">
+              {selectedCourse ? (selectedCourse.Course_Name || selectedCourse.name) : 'No course selected'}
+            </span>
+          </div>
+        </div>
+        
+        <div className="review-section">
+          <h4>Academic Grades</h4>
+          {formData.academicGrades.map((grade, index) => (
+            <div className="review-grade" key={index}>
+              <div className="review-item">
+                <span className="review-label">Subject:</span>
+                <span className="review-value">{grade.subject}</span>
+              </div>
+              <div className="review-item">
+                <span className="review-label">Grade:</span>
+                <span className="review-value">{grade.grade}</span>
+              </div>
+              <div className="review-item">
+                <span className="review-label">Period:</span>
+                <span className="review-value">
+                  {grade.startDate && grade.endDate ? `${grade.startDate} to ${grade.endDate}` : 'Dates not specified'}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="review-section">
+          <h4>Personal Essay</h4>
+          <div className="review-item essay">
+            <div className="review-value essay-text">{formData.essay}</div>
+          </div>
+        </div>
+        
+        {submitResult.message && (
+          <div className={`result-message ${submitResult.success ? 'success' : 'error'}`}>
+            {submitResult.message}
+          </div>
+        )}
+      </div>
+    );
+  };
+  
+  // Render current step content
+  const renderStepContent = () => {
+    const currentStepId = steps[currentStep].id;
+    
+    switch (currentStepId) {
+      case 'personal':
+        return renderPersonalInfoStep();
+      case 'contact':
+        return renderContactInfoStep();
+      case 'disabilities':
+        return renderDisabilitiesStep();
+      case 'course':
+        return renderCourseSelectionStep();
+      case 'grades':
+        return renderAcademicGradesStep();
+      case 'essay':
+        return renderPersonalEssayStep();
+      case 'review':
+        return renderReviewStep();
+      default:
+        return null;
+    }
+  };
+  
+  // Display connection error message if needed
+  if (connectionStatus === 'failed') {
+    return (
+      <div className="applicant-form wizard">
+        <div className="app-header">
+          <div className="college-logo">
+            <span className="c-letter">C</span>
+            <span className="ape-text">ape</span>
+            <span className="c-letter">C</span>
+            <span className="ollege-text">ollege</span>
+          </div>
+          <h1 className="header-title">Applicant</h1>
+        </div>
+        
+        <div className="connection-error">
+          <h2>Connection Error</h2>
+          <p>We could not connect to the database. Please try again later or contact support.</p>
+          <button onClick={() => window.location.reload()}>Retry</button>
+        </div>
+      </div>
+    );
+  }
+  
+  return (
+    <div className="applicant-form wizard">
+      {/* Header */}
+      <div className="app-header">
+        <div className="college-logo">
+          <span className="c-letter">C</span>
+          <span className="ape-text">ape</span>
+          <span className="c-letter">C</span>
+          <span className="ollege-text">ollege</span>
+        </div>
+        <h1 className="header-title">Applicant</h1>
+      </div>
+      
+      {/* Form Container */}
+      <div className="form-container">
+        <div className="page-header">
+          <h1>Applicant Registration Form</h1>
+          {connectionStatus === 'initializing' && <div className="loading-message">Initializing connection...</div>}
+        </div>
+        
+        {/* Progress bar */}
+        {renderProgressBar()}
+        
+        <form onSubmit={handleSubmit}>
+          {/* Step content */}
+          <div className="wizard-step">
+            <h2 className="step-title">{steps[currentStep].title}</h2>
+            {renderStepContent()}
+          </div>
+          
+          {/* Navigation buttons */}
+          {renderStepNavigation()}
+        </form>
+      </div>
+    </div>
+  );
 }
 
-// Toolbar with Save button// Toolbar with Save button
-const SaveToolbar = () => (
-    <Toolbar>
-        <SaveButton /> 
-    </Toolbar>
-);
-/*
-- **Toolbar component**: Provides a toolbar UI that includes a save button.
-- **SaveButton**: Triggers a form submission to save the data input by the user.
-*/
-
-const PersonalInfo = () => (
-    <>
-        <TextInput
-            source="firstName"
-            label="First Name"
-            fullWidth
-            validate={[required('First name is required.'), minLength(2, 'First name must be at least 2 characters long.')] } // Custom error messages
-            helperText="Enter your given name as it appears on official documents."
-        />
-        <TextInput
-            source="lastName"
-            label="Last Name"
-            fullWidth
-            validate={[required('Last name is required.'), minLength(2, 'Last name must be at least 2 characters long.')] } // Custom error messages
-            helperText="Enter your family name or surname."
-        />
-        <SelectInput
-            source="gender"
-            label="Gender"
-            fullWidth
-            choices={[
-                { id: 'male', name: 'Male' },
-                { id: 'female', name: 'Female' },
-                { id: 'other', name: 'Other' }
-            ]}
-            validate={[required('Gender selection is required.')]} // Custom error message
-            helperText="Select your gender identity."
-        />
-        <SelectInput
-            source="title"
-            label="Title"
-            fullWidth
-            choices={[
-                { id: 'Mr', name: 'Mr' },
-                { id: 'Mrs', name: 'Mrs' },
-                { id: 'Ms', name: 'Ms' },
-                { id: 'Dr', name: 'Dr' },
-                { id: 'Other', name: 'Other' }
-            ]}
-            validate={[required('Title selection is required.')]} // Custom error message
-            helperText="Select the appropriate title (e.g., Mr, Mrs, Dr)."
-        />
-        <DateInput
-            source="dob"
-            label="Date of Birth"
-            fullWidth
-            validate={[required('Date of birth is required.')]} // Custom error message
-            helperText="Enter your date of birth in YYYY-MM-DD format."
-        />
-        
-        <TextInput
-            source="nationalId"
-            label="Identity Number"
-            fullWidth
-            validate={[required('Identity number is required.'), minLength(6, 'Identity number must be at least 6 characters long.')] } // Custom error messages
-            helperText="Enter your national identity number."
-        />
-        <SelectInput
-            source="citizen"
-            label="Citizen Status"
-            fullWidth
-            validate={[required('Citizen status is required.')]} // Custom error message
-            helperText="Specify your citizenship status in South Africa."
-            choices={[
-                { id: 'citizen', name: 'Citizen' },
-                { id: 'permanent_resident', name: 'Permanent Resident' },
-                { id: 'temporary_resident', name: 'Temporary Resident' },
-                { id: 'green_card', name: 'Work Visa' },
-                { id: 'non_citizen', name: 'Non-Citizen' }
-            ]}
-        />
-        <TextInput
-            source="country"
-            label="Country of Birth"
-            fullWidth
-            validate={[required('Country of birth is required.')]} // Custom error message
-            helperText="Enter the country where you were born."
-        />
-    </>
-);
-// form for selecting course
-const CourseForm = () => (
-        <SelectInput 
-            source="course" 
-            choices={[
-                { id: 'Bachelor_of_Science', name: 'Bachelor of Science' },
-                { id: 'Bachelor_of_Arts', name: 'Bachelor of Arts' },
-                { id: 'Bachelor_of_Commerce', name: 'Bachelor of Commerce' },
-                { id: 'Bachelor_of_Engineering', name: 'Bachelor of Engineering' },
-                { id: 'Bachelor_of_Data_Analysis', name: 'Bachelor in Data Analysis' },
-                { id: 'Bachelor_of_Supply_Chain_Information_Analysis', name: 'Bachelor in Supply Chain and Information Analysis' },
-            ]}
-        />
-);
-
-
-const ContactInfo = () => (
-    <>
-        <TextInput
-            source="email"
-            label="Email"
-            fullWidth
-            validate={[required('Email is required.'), email('Enter a valid email address.')]} // Custom error messages
-            helperText="Enter a valid email address."
-        />
-        <TextInput
-            source="mobile"
-            label="Mobile Number"
-            fullWidth
-            validate={[required('Mobile number is required.'),minLength(10), maxLength(10)] } // Custom error message
-            helperText="Enter a valid mobile number."
-        />
-        <TextInput
-            source="address"
-            label="Residential Address"
-            fullWidth
-            validate={[required('Residential address is required.')] } // Custom error message
-            helperText="Enter your current residential address."
-        />
-    </>
-);
-
-
-const Disabilities = () => {
-    const [hasDisability, setHasDisability] = useState(false);
-
-    return (
-        <Box fullWidth>
-            <BooleanInput
-                source="hasDisability"
-                label="Do you have any disabilities?"
-                validate={[required()]}
-                onChange={(e) => setHasDisability(e.target.checked)}
-                helperText="Check if you have a disability that you would like to disclose."
-            />
-            {hasDisability && (
-                <TextInput
-                    source="disabilityDetails"
-                    label="Please describe your disability"
-                    fullWidth
-                    helperText="Provide details about your disability."
-                />
-            )}
-        </Box>
-    );
-};
-
-// form validation
-const maxThree = (value) => {
-    if (value > 3) {
-        return 'Grade must be less than or equal to 3';
-    }
-    return undefined; // No error
-};
-
-
-
-
-const AcademicHistory = () => (
-    <>
-        <TextInput
-            source="highSchool"
-            label="High School Name"
-            fullWidth
-            validate={[required()]}
-            helperText="Enter the name of the high school you attended."
-        />
-<ArrayInput source="grades">
-    <SimpleFormIterator>
-        <SelectInput
-            source="subject"
-            label="Subject"
-            fullWidth
-            choices={[
-                { id: 'math', name: 'Mathematics' },
-                { id: 'english', name: 'English' },
-                { id: 'science', name: 'Physical Science' },
-                { id: 'biology', name: 'Life Sciences' },
-                { id: 'chemistry', name: 'Chemistry' },
-                { id: 'physics', name: 'Physics' },
-                { id: 'history', name: 'History' },
-                { id: 'geography', name: 'Geography' },
-                { id: 'economics', name: 'Economics' },
-                { id: 'accounting', name: 'Accounting' },
-                { id: 'business_studies', name: 'Business Studies' },
-                { id: 'computer_science', name: 'Computer Science' },
-                { id: 'information_technology', name: 'Information Technology' },
-                { id: 'programming', name: 'Programming' },
-                { id: 'visual_arts', name: 'Visual Arts' },
-                { id: 'music', name: 'Music' },
-                { id: 'drama', name: 'Drama' },
-                { id: 'physical_education', name: 'Physical Education' },
-                { id: 'engineering_graphics_design', name: 'Engineering Graphics and Design' },
-                { id: 'agriculture', name: 'Agricultural Science' },
-                { id: 'consumer_studies', name: 'Consumer Studies' },
-                { id: 'hospitality_studies', name: 'Hospitality Studies' },
-                { id: 'tourism', name: 'Tourism' },
-                { id: 'religious_studies', name: 'Religious Studies' },
-                { id: 'life_orientation', name: 'Life Orientation' },
-                { id: 'foreign_language', name: 'Foreign Language' },
-                { id: 'french', name: 'French' },
-                { id: 'spanish', name: 'Spanish' },
-                { id: 'german', name: 'German' },
-                { id: 'afrikaans', name: 'Afrikaans' },
-                { id: 'portuguese', name: 'Portuguese' },
-                { id: 'mandarin', name: 'Mandarin' },
-                { id: 'latin', name: 'Latin' },
-                { id: 'arabic', name: 'Arabic' },
-                { id: 'zulu', name: 'Zulu' },
-                { id: 'isiXhosa', name: 'IsiXhosa' },
-                { id: 'sepedi', name: 'Sepedi' },
-                { id: 'setswana', name: 'Setswana' },
-                { id: 'sotho', name: 'Sotho' },
-                { id: 'tshivenda', name: 'Tshivenda' },
-                { id: 'siswati', name: 'SiSwati' },
-                { id: 'northern_sotho', name: 'Northern Sotho' },
-                { id: 'isiNdebele', name: 'IsiNdebele' },
-                { id: 'art_and_culture', name: 'Art and Culture' },
-                { id: 'woodwork', name: 'Woodwork' },
-                { id: 'technical_drawing', name: 'Technical Drawing' },
-                { id: 'mechanical_technology', name: 'Mechanical Technology' },
-                { id: 'electrical_technology', name: 'Electrical Technology' },
-            ]}
-        />
-        <NumberInput source="grade" label="Final Grade" validate={[required(), maxThree]}  fullWidth />
-
-    </SimpleFormIterator>
-    <DateInput source="startDate" label="Start Date" validate={[required()]} />
-    <DateInput source="endDate" label="End Date" validate={[required()]} />
-</ArrayInput>
-
-
-
-
-    </>
-);
-
-
-
-const PersonalEssay=()=>(
-   <>
-    <TextInput
-            source="essay"
-            label="Personal Essay"
-            multiline
-            rows={4}
-            fullWidth
-            helperText="Write a 1,500-word essay on your life experiences, achievements, and passions."
-        />
-  
-   </>
-
-);
-
 export default ApplicantForm;
-
-/*
-
-In PocketBase, each field needs to have a specific data type depending on its usage. Here's the breakdown of the appropriate field types for each field in the form:
-
-1. Personal Information
-firstName: Text field (Single Line).
-lastName: Text field (Single Line).
-gender: Select field (with options: Male, Female, Other).
-title: Select field (with options: Mr, Mrs, Ms, Dr, Other).
-dob: Date field.
-nationalId: Text field (Single Line).
-citizen: Text field (Single Line).
-country: Text field (Single Line).
-
-
-2. Contact Information
-email: Email field.
-phone: Text field (Single Line, or Phone field if available).
-emergencyContacts: JSON field (contains an array of objects with the following subfields):
-code: Text field (Single Line) for country code.
-number: Number field for contact number.
-
-altEmail: Email field (optional).
-
-
-
-3. Disabilities
-hasDisability: Boolean field (true/false).
-disabilityDetails: Text field (Single Line or Multiline), visible only when hasDisability is true.
-
-
-4. Academic History
-highSchool: Text field (Single Line).
-grades: JSON field (contains an array of objects with the following subfields):
-subject: Select field (with a list of subjects as options).
-grade: Number field for the final grade.
-
-
-5. Personal Essay
-essay: Text field (Multiline) for longer text.
-
-*/
