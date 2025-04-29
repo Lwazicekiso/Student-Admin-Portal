@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Admin,DateInput,DateField, Resource, List, Datagrid, TextField, EmailField, NumberField, FileField, 
+import { DateInput,DateField,List, Datagrid, TextField, EmailField, NumberField, FileField, 
          Edit, Create, Show, SimpleForm, SimpleShowLayout, TextInput, NumberInput,
          FileInput, ReferenceField, ReferenceInput, SelectInput, ReferenceArrayField, SingleFieldList, ChipField,
          ReferenceArrayInput, BooleanField,

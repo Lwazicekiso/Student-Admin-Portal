@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import MyLogin from './MyComponents/MyLogin.jsx';
@@ -6,6 +5,7 @@ import MyLecturer from './MyComponents/MyLecturer.jsx';
 import MyAdmin from './MyComponents/MyAdmin.jsx';
 import MyStudent from './MyComponents/MyStudent.jsx';
 import Applicant from './MyComponents/ApplicantPage.jsx';
+
 
 
 
