@@ -122,7 +122,6 @@ const StudentSideBar = (props) => {
 const StudentLayout = (props) => (
     <Layout
         {...props}
-        appBar={StudentAppBar} // Use custom AppBar
         sidebar={StudentSideBar} // Use custom Sidebar
         menu={Menu} // Default Menu
     />

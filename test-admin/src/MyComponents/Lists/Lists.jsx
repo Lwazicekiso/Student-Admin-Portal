@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Admin,DateInput,DateField, Resource, List, Datagrid, TextField, EmailField, NumberField, FileField, 
          Edit, Create, Show, SimpleForm, SimpleShowLayout, TextInput, NumberInput,
          FileInput, ReferenceField, ReferenceInput, SelectInput, ReferenceArrayField, SingleFieldList, ChipField,
-         ReferenceArrayInput, 
+         ReferenceArrayInput, BooleanField,
          required,
          useNotify, SelectArrayInput } from 'react-admin';
          
@@ -77,16 +77,35 @@ const validateApplicant = (values) => {
 // Applicants List View
 // ------------------------------------------------------------------
 export const ApplicantList = (props) => (
-    <List {...props} sx={commonStyles}>
-        <Datagrid rowClick="show" sx={dataGridStyle}>
-            <TextField source="Name" label="Name" />
-            <TextField source="Surname" label="Surname" />
-            <EmailField source="Email" label="Email" />
-            <TextField source="Sex" label="Sex" />
-            <NumberField source="Phone" label="Phone" />
-            <DateField source="DOB" label="Date of Birth" />
-        </Datagrid>
-    </List>
+  <List>
+    <Datagrid rowClick="edit" bulkActionButtons={false} sx={{
+      '& .RaDatagrid-headerCell': {
+        backgroundColor: '#194D6C',
+        color: '#FFFFFF',
+      },
+      '& .RaDatagrid-row': {
+        '&:nth-of-type(odd)': {
+          backgroundColor: '#f5f5f5',
+        },
+        '&:hover': {
+          backgroundColor: 'rgba(44, 100, 133, 0.1)',
+        },
+      },
+    }}>
+      <TextField source="id" />
+      <TextField source="title" />
+      <TextField source="firstName" />
+      <TextField source="lastName" />
+      <EmailField source="email" />
+      <TextField source="mobile" />
+      <DateField source="dob" />
+      <BooleanField source="hasDisability" />
+      <ReferenceField source="Course_selection" reference="Course">
+        <TextField source="name" />
+      </ReferenceField>
+      <FileField source="documents" title="Documents" />
+    </Datagrid>
+  </List>
 );
 
 // ------------------------------------------------------------------
